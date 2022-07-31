@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="trang1.css">
+    <title>Xếp thời khóa biểu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div class="button-menu" id="button-menu">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="nav-choose menu-hide" id="nav-choose">
+        <div class="nav-choose-title">MENU</div>
+        <ul>
+            <li><a href="../Trang1/trang1.html">Nhập nguồn</a></li>
+            <li><a href="../Trang2/trang2.html">Chọn môn học</a></li>
+            <li><a href="../Trang3/trang3.html">Chọn lớp</a></li>
+            <li><a href="../Trang4/trang4.html">Thời khóa biểu</a></li>
+        </ul>
+    </div>
+    <div class="main-content content-show" id="main-content">
+        <div class="luu-y">
+            <div class="luu-y-text">
+                <div class="luu-y-title">Lưu ý:</div>
+                <ul>
+                    <li>File excel được đã được copy từ nguồn trang web</li>
+                    <li>Chèn thêm 1 dòng dữ liệu nếu các cột chưa có tiêu đề</li>
+                    <ul>
+                        <li>Tên cột được viết liền không đấu</li>
+                        <li>Nhấn vào dòng 1 chọn "Insert"</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="luu-y-ex">
+                <div class="luu-y-title">Ví dụ:</div>
+                <input type="checkbox" name="" id="zoom-img-ex">
+                <label for="zoom-img-ex">
+                    <img src="filevd.png" alt="">
+                </label>
+            </div>
+
+        </div>
+        <div class="get-file" id="get-file">
+            <div class="loading loading-hide">
+                <div style="--value: 1"></div>
+                <div style="--value: 2"></div>
+                <div style="--value: 3"></div>
+                <div style="--value: 4"></div>
+                <div style="--value: 5"></div>
+                <div style="--value: 6"></div>
+                <div style="--value: 7"></div>
+                <div style="--value: 8"></div>
+            </div>
+            <div class="get-file-title">
+                <span>Kéo thả file vào đây</span>
+                <span>Hoặc</span>
+                <label for="files-source">Nhấp vào đây để chọn file</label>
+                <input type="file" name="" id="files-source" accept=".xls,.xlsx">
+            </div>
+            <div class="file-excel file-excel-hide" id="file-excel-img">
+                <div class="file-excel-icon">
+                    <div style="--value: 1"></div>
+                    <div style="--value: 2"></div>
+                    <div style="--value: 3"></div>
+                    <div style="--value: 4"></div>
+                    <div style="--value: 5"></div>
+                    <div style="--value: 6"></div>
+                    <div></div> <!-- phan ho tro  -->
+                    <div class="button-delete-files" id="button-delete-files">+</div>
+                </div>
+                <div class="file-excel-name">asd.xlsx</div>
+            </div>
+        </div>
+
+        <div class="button-check" id="button-check">
+            Đọc file
+        </div>
+        <a href="../Trang2/trang2.html" class="tag-a-next">
+            <div class="button-check" id="button-submit">
+                Xác nhận
+            </div>
+        </a>
+        <div class="note-run">
+            <ul>
+                <li>Sau khi <span>Đọc file</span>  quá trình load diễn ra có thể làm đơ trang web.</li>
+                <li>Sau khi đọc file. Xác nhận tải file json với tên <span>_source.json</span>.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="js1.js"></script>
+<script src="../nav.js"></script>

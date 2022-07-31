@@ -1,0 +1,13 @@
+@import '../nav.scss';
+.main-content{
+    position: absolute;
+    left: 250px;
+    top: 0px;
+    background-color: whitesmoke;
+    height: 100vh;
+    width: calc(100% - 250px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}

@@ -1,0 +1,338 @@
+@import '../nav.css';
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+.main-content {
+  display: flex;
+  align-items: center;
+  font-size: 50px;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.luu-y {
+  border: 1px solid black;
+  border-bottom-left-radius: 25% 100%;
+  border-bottom-right-radius: 25% 100%;
+  border-top-left-radius: 25% 100%;
+  border-top-right-radius: 25% 100%;
+  margin-top: 30px;
+  width: 70%;
+  font-family: "Patrick Hand", cursive;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+}
+.luu-y-text .luu-y-title {
+  color: red;
+  font-size: 25px;
+  -webkit-text-decoration: underline red 1px;
+          text-decoration: underline red 1px;
+  text-underline-offset: 5px;
+}
+.luu-y-text > ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  line-height: 35px;
+}
+.luu-y-text > ul > li {
+  font-size: 20px;
+}
+.luu-y-text > ul > ul {
+  list-style: circle;
+  padding-left: 20px;
+  line-height: 30px;
+}
+.luu-y-text > ul > ul > li {
+  font-size: 18px;
+}
+.luu-y-ex {
+  width: 368px;
+  height: 174px;
+  margin-left: 30px;
+}
+.luu-y-ex .luu-y-title {
+  color: red;
+  font-size: 25px;
+  -webkit-text-decoration: underline red 1px;
+          text-decoration: underline red 1px;
+  text-underline-offset: 5px;
+}
+.luu-y-ex input {
+  display: none;
+}
+.luu-y-ex #zoom-img-ex:checked + label > img {
+  transform: translate(-50%, -50%) scale(3.5);
+  cursor: zoom-out;
+  position: absolute;
+  border: 1px solid black;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+}
+.luu-y-ex img {
+  width: 368px;
+  height: 128px;
+  transition: transform 0.25s ease;
+  cursor: zoom-in;
+  z-index: 1;
+}
+
+.get-file {
+  border: 1px dashed black;
+  height: 400px;
+  width: 400px;
+  font-size: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pacifico", cursive;
+  border-top: none;
+  z-index: 10;
+}
+.get-file-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.get-file-title-hide {
+  display: none;
+}
+.get-file-title input {
+  display: none;
+}
+.get-file-title span {
+  font-size: 20px;
+  padding: 5px;
+}
+.get-file-title label {
+  padding-top: 5px;
+  font-size: 20px;
+  -webkit-text-decoration: underline blue;
+          text-decoration: underline blue;
+  color: blue;
+}
+.get-file .loading {
+  z-index: 100;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+}
+.get-file .loading-hide {
+  opacity: 0;
+}
+.get-file .loading div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transform: rotate(calc(var(--value) * 45deg));
+}
+.get-file .loading div::before {
+  content: "";
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  background-color: red;
+  z-index: 20;
+  border-radius: 50%;
+  filter: hue-rotate(calc(var(--value) * 45deg));
+  -webkit-animation-name: cirloading;
+          animation-name: cirloading;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-delay: calc(var(--value) * 0.125s);
+          animation-delay: calc(var(--value) * 0.125s);
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+.get-file .file-excel {
+  position: absolute;
+}
+.get-file .file-excel-hide {
+  display: none;
+}
+.get-file .file-excel-icon {
+  box-sizing: border-box;
+  position: relative;
+  width: 150px;
+  height: 200px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+.get-file .file-excel-icon::before {
+  content: "X";
+  z-index: 2;
+  background-color: green;
+  width: 70px;
+  height: 80px;
+  position: absolute;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  margin: 50px 0 0 -20px;
+}
+.get-file .file-excel-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
+}
+.get-file .file-excel-icon div:not(:last-child, :nth-child(7)) {
+  width: 20px;
+  height: 10px;
+  position: absolute;
+  background-color: rgb(0, calc(205 - var(--value) * 20), calc(10 + var(--value) * 10));
+}
+.get-file .file-excel-icon :nth-child(1) {
+  margin: 60px 0 0 70px;
+}
+.get-file .file-excel-icon :nth-child(2) {
+  margin: 60px 0 0 100px;
+}
+.get-file .file-excel-icon :nth-child(3) {
+  margin: 80px 0 0 70px;
+}
+.get-file .file-excel-icon :nth-child(4) {
+  margin: 80px 0 0 100px;
+}
+.get-file .file-excel-icon :nth-child(5) {
+  margin: 100px 0 0 70px;
+}
+.get-file .file-excel-icon :nth-child(6) {
+  margin: 100px 0 0 100px;
+}
+.get-file .file-excel-icon :nth-child(7) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 39px;
+  height: 39px;
+  background-color: red;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+  margin: -19px -19px 0 0;
+  border-bottom: 1px solid black;
+  background-color: white;
+  z-index: 5;
+}
+.get-file .file-excel-icon .button-delete-files {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  right: 0;
+  font-size: 25px;
+  line-height: 25px;
+  text-align: center;
+  z-index: 10;
+  margin: -20px -20px 0 0;
+  cursor: pointer;
+}
+.get-file .file-excel-name {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+}
+
+@-webkit-keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
+
+@keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
+.button-check {
+  cursor: pointer;
+  background-color: lightgreen;
+  font-family: "Patrick Hand", cursive;
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  bottom: 200px;
+  right: 80px;
+  padding: 0 15px;
+}
+.button-check:hover {
+  background-color: rgb(248, 106, 215);
+}
+.button-check:hover::before {
+  background-color: rgb(248, 106, 215);
+}
+.button-check:hover::after {
+  border-left: 40px solid rgb(248, 106, 215);
+}
+.button-check::before {
+  content: "";
+  position: absolute;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 50%, 0 0);
+          clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 50%, 0 0);
+  height: 80px;
+  width: 40px;
+  background-color: lightgreen;
+  left: 0;
+  margin-left: -39px;
+}
+.button-check::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  border-left: 40px solid lightgreen;
+  border-top: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  margin-right: -80px;
+}
+
+.tag-a-next {
+  color: #000;
+}
+.tag-a-next div {
+  bottom: 40px;
+}
+
+.note-run {
+  position: absolute;
+  border: 2px dashed red;
+  color: red;
+  width: 200px;
+  text-align: justify;
+  left: 70px;
+  top: 60%;
+  padding: 60px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  font-family: "Patrick Hand", cursive;
+  font-size: 25px;
+}
+.note-run ul {
+  list-style: inside decimal;
+}
+.note-run span {
+  -webkit-text-decoration: underline red;
+          text-decoration: underline red;
+  text-underline-offset: 5px;
+}
+.note-run span:hover {
+  color: rgb(0, 61, 202);
+  -webkit-text-decoration: underline rgb(0, 61, 202);
+          text-decoration: underline rgb(0, 61, 202);
+}/*# sourceMappingURL=trang1.css.map */

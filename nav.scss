@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@mixin size($width : 10px , $height : $width) {
+    width: $width ;
+    height: $height;
+}
+
+@mixin font($size : 12px , $color : black,$fweight :normal) {
+    font-size: $size;
+    color: $color;
+    font-weight: $fweight;
+}
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.button-menu{
+    cursor: pointer;
+    position: fixed;
+    @include size(40px);
+    top: 10px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    z-index: 100;
+    border: 1px solid black;
+    border-radius: 30%;
+
+    &:hover{
+        background-color: black;
+        i{
+            color: white;
+        }
+    }
+    i{
+        font-size: 30px;
+    }
+}
+
+.nav-choose{
+    position: fixed;
+    @include size(250px,100vh);
+    background-color: lightgreen;
+    &-title{
+        font-size: 30px;
+        @include size(100%,70px);
+        text-align: center;
+        line-height: 70px;
+        font-family: 'Anton', sans-serif;
+    }
+    ul{
+        list-style: none;
+        a{
+            @include font(25px,white,bold);
+            @include size(100%,70px);
+            text-decoration: none;
+            font-family: 'Josefin Sans', sans-serif;
+            display: block;
+            text-align: center;
+            line-height: 70px;
+            &:hover{
+                background-color: rgb(170, 247, 170);
+            }
+        }
+    }
+    opacity: 1;
+    transition: 0.2s linear;
+}
+
+.menu-hide{
+    width: 0 !important;
+    opacity: 0 !important;
+}
+
+.main-content{
+    position: absolute;
+    left: 250px;
+    top: 0px;
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    transition: 0.2s linear;
+}
+
+.content-show{
+    width: 100% !important; 
+    left: 0 !important; 
+}

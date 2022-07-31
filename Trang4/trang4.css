@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.button-menu {
+  cursor: pointer;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  z-index: 100;
+  border: 1px solid black;
+  border-radius: 30%;
+}
+.button-menu:hover {
+  background-color: black;
+}
+.button-menu:hover i {
+  color: white;
+}
+.button-menu i {
+  font-size: 30px;
+}
+
+.nav-choose {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  background-color: lightgreen;
+  opacity: 1;
+  transition: 0.2s linear;
+}
+.nav-choose-title {
+  font-size: 30px;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-family: "Anton", sans-serif;
+}
+.nav-choose ul {
+  list-style: none;
+}
+.nav-choose ul a {
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 70px;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+  display: block;
+  text-align: center;
+  line-height: 70px;
+}
+.nav-choose ul a:hover {
+  background-color: rgb(170, 247, 170);
+}
+
+.menu-hide {
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+.main-content {
+  position: absolute;
+  left: 250px;
+  top: 0px;
+  min-height: 100vh;
+  width: calc(100% - 250px);
+  transition: 0.2s linear;
+}
+
+.content-show {
+  width: 100% !important;
+  left: 0 !important;
+}
+
+.main-content {
+  position: absolute;
+  left: 250px;
+  top: 0px;
+  background-color: whitesmoke;
+  height: 100vh;
+  width: calc(100% - 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}/*# sourceMappingURL=trang4.css.map */
