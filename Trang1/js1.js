@@ -73,7 +73,7 @@ buttoncheck.onclick = function () {
       }
 
       cirloading[0].classList.add('loading-hide')
-    }, 1000)
+    }, 100)
     
   }
   else {
@@ -88,4 +88,3 @@ deletecurrentfile.onclick = function () {
   imgfileex.classList.add('file-excel-hide')
   selectedFile = undefined
 }
-

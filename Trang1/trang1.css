@@ -61,7 +61,7 @@
   display: none;
 }
 .luu-y-ex #zoom-img-ex:checked + label > img {
-  transform: translate(-50%, -50%) scale(3.5);
+  transform: translate(-50%, -50%) scale(3);
   cursor: zoom-out;
   position: absolute;
   border: 1px solid black;

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 * {
   margin: 0px;
   padding: 0px;
@@ -93,6 +94,72 @@
   width: calc(100% - 250px);
   display: flex;
   justify-content: center;
-  align-items: center;
   font-size: 50px;
+}
+
+.address-source {
+  width: 70%;
+  position: relative;
+}
+.address-source input[type=radio] {
+  display: none;
+}
+.address-source label.source-relative {
+  width: 50%;
+  left: 0;
+  position: absolute;
+}
+.address-source label.source-absolute {
+  width: 50%;
+  position: absolute;
+  right: 0;
+}
+
+.button-check {
+  cursor: pointer;
+  background-color: lightgreen;
+  font-family: "Patrick Hand", cursive;
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  bottom: 200px;
+  right: 80px;
+  padding: 0 15px;
+}
+.button-check:hover {
+  background-color: rgb(248, 106, 215);
+}
+.button-check:hover::before {
+  background-color: rgb(248, 106, 215);
+}
+.button-check:hover::after {
+  border-left: 40px solid rgb(248, 106, 215);
+}
+.button-check::before {
+  content: "";
+  position: absolute;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 50%, 0 0);
+          clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 50%, 0 0);
+  height: 80px;
+  width: 40px;
+  background-color: lightgreen;
+  left: 0;
+  margin-left: -39px;
+}
+.button-check::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  border-left: 40px solid lightgreen;
+  border-top: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  margin-right: -80px;
+}
+
+.tag-a-next {
+  color: #000;
+}
+.tag-a-next div {
+  bottom: 40px;
 }/*# sourceMappingURL=trang2.css.map */
