@@ -1,82 +1,202 @@
 @import '../nav.css';
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 .main-content {
   position: absolute;
   left: 250px;
   top: 0px;
-  background-color: whitesmoke;
   height: 100vh;
   width: calc(100% - 250px);
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 50px;
 }
 
-.address-source {
-  width: 70%;
+.get-file {
   position: relative;
+  border: 1px dashed black;
+  height: 400px;
+  width: 400px;
+  font-size: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pacifico", cursive;
+  z-index: 10;
 }
-.address-source input[type=radio] {
+.get-file-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.get-file-title-hide {
   display: none;
 }
-.address-source input[type=radio]:checked + label {
-  opacity: 1;
+.get-file-title input {
+  display: none;
 }
-.address-source input[type=radio]:checked + label :first-child {
-  background-color: blue;
+.get-file-title span {
+  font-size: 20px;
+  padding: 5px;
 }
-.address-source input[type=radio]:checked + label :last-child {
-  pointer-events: initial;
+.get-file-title label {
+  padding-top: 5px;
+  font-size: 20px;
+  -webkit-text-decoration: underline blue;
+          text-decoration: underline blue;
+  color: blue;
 }
-.address-source label {
+.get-file .loading {
+  z-index: 100;
   position: absolute;
-  width: 50%;
-  border: 1px solid black;
-  box-sizing: border-box;
-  font-size: 0;
-  padding: 10px;
-  opacity: 0.4;
+  width: 70px;
+  height: 70px;
 }
-.address-source label :first-child {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  display: inline-block;
+.get-file .loading-hide {
+  opacity: 0;
+}
+.get-file .loading div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transform: rotate(calc(var(--value) * 45deg));
+}
+.get-file .loading div::before {
+  content: "";
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  background-color: red;
+  z-index: 20;
   border-radius: 50%;
+  filter: hue-rotate(calc(var(--value) * 45deg));
+  -webkit-animation-name: cirloading;
+          animation-name: cirloading;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-delay: calc(var(--value) * 0.125s);
+          animation-delay: calc(var(--value) * 0.125s);
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
 }
-.address-source label :first-child::before {
+.get-file .file-json {
+  position: absolute;
+}
+.get-file .file-json-hide {
+  display: none;
+}
+.get-file .file-json-icon {
+  box-sizing: border-box;
+  position: relative;
+  width: 150px;
+  height: 200px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+.get-file .file-json-icon::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid black;
-  box-sizing: border-box;
-  transform: scale(1.3);
-}
-.address-source label :nth-child(2) {
-  font-family: "Vollkorn", serif;
-  font-size: 30px;
-  display: inline-block;
-}
-.address-source label :last-child {
-  display: block;
-  font-family: "Vollkorn", serif;
-  font-size: 23px;
-  pointer-events: none;
-  width: 90%;
-  padding-left: 10px;
-  line-height: 32px;
-}
-.address-source label.source-relative {
-  left: 0;
-}
-.address-source label.source-absolute {
+  top: 0;
   right: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
+}
+.get-file .file-json-icon :first-child {
+  position: absolute;
+  font-size: 90px;
+  color: rgb(174, 177, 13);
+  font-family: Arial, Helvetica, sans-serif;
+  word-spacing: 10px;
+  line-height: 200px;
+  width: 150px;
+  text-align: center;
+}
+.get-file .file-json-icon :nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 39px;
+  height: 39px;
+  background-color: red;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+  margin: -19px -19px 0 0;
+  border-bottom: 1px solid black;
+  background-color: white;
+  z-index: 5;
+}
+.get-file .file-json-icon .button-delete-files {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  right: 0;
+  font-size: 25px;
+  line-height: 25px;
+  text-align: center;
+  z-index: 10;
+  margin: -20px -20px 0 0;
+  cursor: pointer;
+}
+.get-file .file-json-name {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+}
+.get-file .button-read {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  right: 0;
+  margin-right: -101px;
+  background-color: lightgreen;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.get-file .button-read::after {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 100px;
+  -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+          clip-path: polygon(0 0, 100% 50%, 0 100%);
+  right: 0;
+  margin: -20px -29px 0 0;
+  background-color: lightgreen;
+}
+.get-file .button-read:hover {
+  background-color: rgb(207, 255, 207);
+}
+.get-file .button-read:hover::after {
+  background-color: rgb(207, 255, 207);
 }
 
+@-webkit-keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
+
+@keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
 .button-check {
   cursor: pointer;
   background-color: lightgreen;

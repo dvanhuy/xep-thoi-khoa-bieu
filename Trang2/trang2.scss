@@ -1,94 +1,201 @@
 @import '../nav.css';
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .main-content{
     position: absolute;
     left: 250px;
     top: 0px;
-    background-color: whitesmoke;
     height: 100vh;
     width: calc(100% - 250px);
     display: flex;
     justify-content: center;
-    // align-items: center;
+    align-items: center;
     font-size: 50px;
+    // overflow-x: hidden;
 }
 
 
-.address-source{
-    width: 70%;
+.get-file{
     position: relative;
-    input[type="radio"]{
-        display: none;
-        &:checked{
-            & + label{
-                opacity: 1;
-                :first-child{
-                    background-color: blue;
-                }
-                :last-child{
-                    pointer-events: initial;
-                }
-            }
+    border: 1px dashed black;
+    height: 400px;
+    width: 400px;
+    font-size: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico', cursive;
+    z-index: 10;
+
+    &-title{
+        &-hide{
+            display: none;
+        }
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input{
+            display: none;
+        }
+        span{
+            font-size: 20px;
+            padding: 5px;
+        }
+        label{
+            padding-top: 5px;
+            font-size: 20px;
+            text-decoration: underline blue;
+            color: blue;
         }
     }
-    label{
+
+    .loading{
+        z-index: 100;
+        &-hide{
+            opacity: 0;
+        }
         position: absolute;
-        width: 50%;
-        border: 1px solid black;
-        box-sizing: border-box;
-        font-size: 0;
-        padding: 10px;
-        opacity: 0.4;
-        :first-child{
-            position: relative;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            display: inline-block;
-            border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            transform: rotate(calc(var(--value)*45deg));
             &::before{
                 content: "";
+                width: 20%;
+                height: 20%;
                 position: absolute;
-                width: 20px;
-                height: 20px;
+                background-color: red;
+                z-index: 20;
                 border-radius: 50%;
-                border: 1px solid black;
-                box-sizing: border-box;
-                transform: scale(1.3);
+                filter: hue-rotate(calc(var(--value)*45deg));
+                animation-name: cirloading; //viet tat dc
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-delay: calc(var(--value)*0.125s);
+                animation-timing-function: linear;
             }
         }
-        :nth-child(2){
-            font-family: 'Vollkorn', serif;
+    }
+
+    .file-json{
+        position: absolute;
+        &-hide{
+            display: none;
+        }
+        &-icon{
+            box-sizing: border-box;
+            position: relative;
+            width: 150px;
+            height: 200px;
+            background-color: whitesmoke;
+            border: 1px solid black;
+            &::after{
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 30px;
+                height: 30px;
+                border: 1px solid black;
+                border-bottom-left-radius: 10px;
+                box-sizing: border-box;
+            }
+
+            :first-child{
+                position: absolute;
+                font-size: 90px;
+                color: rgb(174, 177, 13);
+                font-family: Arial, Helvetica, sans-serif;
+                word-spacing: 10px;
+                line-height: 200px;
+                width: 150px;
+                text-align: center;
+            }
+
+            :nth-child(2){
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 39px;
+                height: 39px;
+                background-color: red;
+                box-sizing: border-box;
+                transform: rotate(45deg);
+                margin: -19px -19px 0 0;
+                border-bottom: 1px solid black;
+                background-color: white;
+                z-index: 5;
+            }
+            .button-delete-files{
+                font-family: Arial, Helvetica, sans-serif;
+                position: absolute;
+                width: 25px;
+                height: 25px;
+                background-color: gray;
+                color: white;
+                border-radius: 50%;
+                transform: rotate(45deg);
+                right: 0;
+                font-size: 25px;
+                line-height: 25px;
+                text-align: center;
+                z-index: 10;
+                margin: -20px -20px 0 0;
+                cursor: pointer;
+            }
+        }
+
+        &-name{
+            position: relative;
             font-size: 30px;
-            display: inline-block;
-        }
-        :last-child{
-            display: block;
-            font-family: 'Vollkorn', serif;
-            font-size: 23px;
-            pointer-events: none;
-            width: 90%;
-            padding-left: 10px;
-            line-height: 32px;
+            text-align: center;            
         }
     }
-    label.source-relative{
-        left: 0;
-    }
-    label.source-absolute{
+
+    .button-read{
+        position: absolute;
+        width: 100px;
+        height: 60px;
         right: 0;
+        margin-right: -101px;
+        background-color: lightgreen;
+        color: black;
+        font-size: 30px;
+        text-align: center;
+        cursor: pointer;
+        &::after{
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 100px;
+            clip-path: polygon(0 0,100% 50%,0 100%);
+            right: 0;
+            margin: -20px -29px 0 0;
+            background-color: lightgreen;
+        }
+
+        &:hover{
+            background-color: rgb(207, 255, 207);
+            &::after{
+                background-color: rgb(207, 255, 207);
+            }
+        }
     }
+
 }
 
-
-
-
-
-
-
-
-
+@keyframes cirloading {
+    to{
+        transform: scale(0);
+    }
+}
 
 .button-check{
     cursor: pointer;

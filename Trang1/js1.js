@@ -1,5 +1,4 @@
 
-
 const cirloading = document.getElementsByClassName('loading')
 const titlefiles = document.getElementsByClassName('get-file-title')
 const dropFileEx = document.getElementById('get-file')
@@ -68,7 +67,7 @@ buttoncheck.onclick = function () {
           let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
           console.log(rowObject);
           allfilejson = JSON.stringify(rowObject, undefined, 4)
-          savefile('../sourcedata.json',allfilejson)
+          savefile('../source.json',allfilejson)
         });
       }
 

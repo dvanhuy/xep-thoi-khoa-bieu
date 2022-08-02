@@ -24,34 +24,40 @@
         </ul>
     </div>
     <div class="main-content content-show" id="main-content">
-        <div class="address-source">
-            <input type="radio" name="source" id="source-relative-input" value="relative" checked>
-            <label for="source-relative-input" class="source-relative">
-                <div class="source-relative-radio">
-                </div>
-                <div class="source-relative-title">
-                    Tương đối (Local)
-                </div>
-                <input type="text" name="" id="" placeholder="../_source.json">
-            </label>
 
-            <input type="radio" name="source" id="source-absolute-input">
-            <label for="source-absolute-input" class="source-absolute" value="absolute">
-                <div class="source-absolute-radio">
+        <div class="get-file" id="get-file">
+            <div class="loading loading-hide">
+                <div style="--value: 1"></div>
+                <div style="--value: 2"></div>
+                <div style="--value: 3"></div>
+                <div style="--value: 4"></div>
+                <div style="--value: 5"></div>
+                <div style="--value: 6"></div>
+                <div style="--value: 7"></div>
+                <div style="--value: 8"></div>
+            </div>
+            <div class="get-file-title">
+                <span>Kéo thả file vào đây</span>
+                <span>Hoặc</span>
+                <label for="files-source">Nhấp vào đây để chọn file</label>
+                <input type="file" name="" id="files-source" accept=".json">
+            </div>
+            <div class="file-json file-json-hide" id="file-json-img">
+                <div class="file-json-icon">
+                    <div>{ }</div>
+                    <div></div> <!-- phan ho tro  -->
+                    <div class="button-delete-files" id="button-delete-files">+</div>
                 </div>
-                <div class="source-absolute-title">
-                    Tuyệt đối (Web)
-                </div>
-                <input type="text" name="" id="" placeholder="D:\(nơi lưu)">
-            </label>
-
+                <div class="file-json-name">asd.json</div>
+            </div>
+            <div class="button-read" id="button-read">
+                Đọc
+            </div>
         </div>
-
-        
 
         <a href="../Trang3/trang3.html" class="tag-a-next">
             <div class="button-check" id="button-submit">
-                Xác nhận
+                Tiếp tục
             </div>
         </a>
     </div>  
