@@ -25,25 +25,25 @@
     </div>
     <div class="main-content content-show" id="main-content">
         <div class="address-source">
-            <label for="source-relative">Tương đối (Local)
+            <input type="radio" name="source" id="source-relative-input" value="relative" checked>
+            <label for="source-relative-input" class="source-relative">
                 <div class="source-relative-radio">
                 </div>
                 <div class="source-relative-title">
                     Tương đối (Local)
                 </div>
-                <input type="text" name="" id="">
+                <input type="text" name="" id="" placeholder="../_source.json">
             </label>
-            <input type="radio" name="source" id="source-relative">
 
-            <label for="source-absolute">
+            <input type="radio" name="source" id="source-absolute-input">
+            <label for="source-absolute-input" class="source-absolute" value="absolute">
                 <div class="source-absolute-radio">
                 </div>
                 <div class="source-absolute-title">
                     Tuyệt đối (Web)
                 </div>
-                <input type="text" name="" id="">
+                <input type="text" name="" id="" placeholder="D:\(nơi lưu)">
             </label>
-            <input type="radio" name="source" id="source-absolute">
 
         </div>
 

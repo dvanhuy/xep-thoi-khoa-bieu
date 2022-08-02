@@ -1,90 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import '../nav.css';
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-.button-menu {
-  cursor: pointer;
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: whitesmoke;
-  z-index: 100;
-  border: 1px solid black;
-  border-radius: 30%;
-}
-.button-menu:hover {
-  background-color: black;
-}
-.button-menu:hover i {
-  color: white;
-}
-.button-menu i {
-  font-size: 30px;
-}
-
-.nav-choose {
-  position: fixed;
-  width: 250px;
-  height: 100vh;
-  background-color: lightgreen;
-  opacity: 1;
-  transition: 0.2s linear;
-}
-.nav-choose-title {
-  font-size: 30px;
-  width: 100%;
-  height: 70px;
-  text-align: center;
-  line-height: 70px;
-  font-family: "Anton", sans-serif;
-}
-.nav-choose ul {
-  list-style: none;
-}
-.nav-choose ul a {
-  font-size: 25px;
-  color: white;
-  font-weight: bold;
-  width: 100%;
-  height: 70px;
-  text-decoration: none;
-  font-family: "Josefin Sans", sans-serif;
-  display: block;
-  text-align: center;
-  line-height: 70px;
-}
-.nav-choose ul a:hover {
-  background-color: rgb(170, 247, 170);
-}
-
-.menu-hide {
-  width: 0 !important;
-  opacity: 0 !important;
-}
-
-.main-content {
-  position: absolute;
-  left: 250px;
-  top: 0px;
-  min-height: 100vh;
-  width: calc(100% - 250px);
-  transition: 0.2s linear;
-}
-
-.content-show {
-  width: 100% !important;
-  left: 0 !important;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
 .main-content {
   position: absolute;
   left: 250px;
@@ -104,14 +20,60 @@
 .address-source input[type=radio] {
   display: none;
 }
-.address-source label.source-relative {
-  width: 50%;
-  left: 0;
+.address-source input[type=radio]:checked + label {
+  opacity: 1;
+}
+.address-source input[type=radio]:checked + label :first-child {
+  background-color: blue;
+}
+.address-source input[type=radio]:checked + label :last-child {
+  pointer-events: initial;
+}
+.address-source label {
   position: absolute;
+  width: 50%;
+  border: 1px solid black;
+  box-sizing: border-box;
+  font-size: 0;
+  padding: 10px;
+  opacity: 0.4;
+}
+.address-source label :first-child {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  display: inline-block;
+  border-radius: 50%;
+}
+.address-source label :first-child::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  box-sizing: border-box;
+  transform: scale(1.3);
+}
+.address-source label :nth-child(2) {
+  font-family: "Vollkorn", serif;
+  font-size: 30px;
+  display: inline-block;
+}
+.address-source label :last-child {
+  display: block;
+  font-family: "Vollkorn", serif;
+  font-size: 23px;
+  pointer-events: none;
+  width: 90%;
+  padding-left: 10px;
+  line-height: 32px;
+}
+.address-source label.source-relative {
+  left: 0;
 }
 .address-source label.source-absolute {
-  width: 50%;
-  position: absolute;
   right: 0;
 }
 
