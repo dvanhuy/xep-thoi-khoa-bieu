@@ -6,6 +6,7 @@ const imgfilejson = document.getElementById('file-json-img')
 const deletecurrentfile = document.getElementById('button-delete-files')
 let selectedFile;
 let allfilejson;
+let filterdata;
 
 // sự kiện thả tệp
 function showimgfileex() {
@@ -51,21 +52,79 @@ deletecurrentfile.onclick = function () {
 }
 
 // ------------------------------------------------------------------
+function fccallback(callback){
+  var reader = new FileReader();
+  reader.readAsText(selectedFile)
+  reader.onload = function(event) {
+    let fileContent = JSON.parse(event.target.result);
+    allfilejson = fileContent
+  };
+  console.log('o trong');
+  dropFilejson.setAttribute('style','display: none;')
+  callback(allfilejson);
+}
+
 
 const readjsonfile = document.getElementById('button-read')
 readjsonfile.onclick= function(){
     if(selectedFile){
-        var reader = new FileReader();
-        reader.readAsText(selectedFile)
-        reader.onload = function(event) {
-          var fileContent = JSON.parse(event.target.result);
-            allfilejson =fileContent
-        };
-        dropFilejson.setAttribute('style','display: none;')
+      // fccallback(data=>{
+      //   console.log(data);
+      // })
+      var reader = new FileReader();
+      reader.readAsText(selectedFile)
+      reader.onload = function(event) {
+        let fileContent = JSON.parse(event.target.result);
+        allfilejson = fileContent
+      };
+      dropFilejson.setAttribute('style','display: none;')
+      setTimeout(() => {
+        // console.log(allfilejson);
+        filterdtdc()
+        jsontotable(filterdata)
+      }, 500);
     }
     else{
         document.getElementById('files-source').click()
     }
 }
 
-  
+let tabledata=""
+
+function tbhead(stringhead)
+{
+  stringhead.forEach(index => {
+    tabledata+= '<th>'+index+'</th>'
+  });
+}
+
+function tbbody(stringbody)
+{
+  stringbody.forEach(index => {
+    tabledata+= '<td>'+index+'</td>'
+  });
+}
+
+function jsontotable(filejson){
+  tabledata +='<table>'
+  tabledata +='<thead><tr>'
+  tbhead(Object.keys(filejson[0]))
+  tabledata +='</tr></thead>'
+  tabledata +='<tbody>'
+  filejson.forEach(row => {
+    tabledata +='<tr>'
+    tbbody(Object.values(row))
+    tabledata +='</tr>'
+  });
+  tabledata +='</tbody>'
+  tabledata +='</table>'
+  document.getElementById('table-data').innerHTML=tabledata
+  document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
+}
+
+function filterdtdc(){
+  filterdata = allfilejson.filter(filejson=>{
+    return filejson.MALOP !== 'CS2'
+  })
+  console.log(filterdata);
+}

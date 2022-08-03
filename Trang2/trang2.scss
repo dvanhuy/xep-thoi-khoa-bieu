@@ -12,13 +12,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
-    // overflow-x: hidden;
 }
 
 
 .get-file{
-    position: relative;
+    position: absolute;
     border: 1px dashed black;
     height: 400px;
     width: 400px;
@@ -242,5 +240,39 @@
     color: #000;
     div{
         bottom: 40px;
+    }
+}
+
+.choose-class{
+    width: 90%;
+    .table-data{
+        width: 100%;
+        table{
+            font-size: 20px;
+            width: 100%;
+            border-spacing: 0px;
+            border-collapse: collapse;
+            thead{
+                tr{
+                    height: 100px;
+                    th{
+                        border: 1px solid black;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    height: 100px;
+                    font-size: 10px;
+                    height: 30px;
+                    th{
+                        border: 1px solid black;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+        }
+        
     }
 }
