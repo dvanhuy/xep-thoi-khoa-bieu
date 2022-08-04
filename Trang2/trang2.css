@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
 .main-content {
   position: absolute;
   left: 250px;
@@ -255,7 +256,13 @@
   font-size: 20px;
   width: 100%;
   border-spacing: 0px;
-  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid black;
+}
+.choose-class .table-data table thead {
+  font-family: "Cabin", sans-serif;
+  background-color: lightblue;
+  color: red;
 }
 .choose-class .table-data table thead tr {
   height: 100px;
@@ -264,12 +271,15 @@
   border: 1px solid black;
   box-sizing: border-box;
 }
+.choose-class .table-data table tbody {
+  font-family: "Vollkorn", serif;
+}
 .choose-class .table-data table tbody tr {
   height: 100px;
-  font-size: 10px;
-  height: 30px;
+  font-size: 18px;
+  height: 90px;
 }
-.choose-class .table-data table tbody tr th {
+.choose-class .table-data table tbody tr td {
   border: 1px solid black;
   box-sizing: border-box;
 }/*# sourceMappingURL=trang2.css.map */

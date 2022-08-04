@@ -79,7 +79,6 @@ readjsonfile.onclick= function(){
       };
       dropFilejson.setAttribute('style','display: none;')
       setTimeout(() => {
-        // console.log(allfilejson);
         filterdtdc()
         jsontotable(filterdata)
       }, 500);
@@ -122,9 +121,27 @@ function jsontotable(filejson){
   document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
 }
 
+function combinesobject(Objectindex,Objectcombine){
+    for (var key in Objectindex) {
+      if (Objectcombine[key] !== undefined)
+      {
+        Objectindex[key] = Objectindex[key] +" - " +Objectcombine[key];
+      }
+    }
+    return Objectindex;
+
+}
+
 function filterdtdc(){
-  filterdata = allfilejson.filter(filejson=>{
-    return filejson.MALOP !== 'CS2'
+  for (let index = 1; index < allfilejson.length; index++) {
+    const elementpre = allfilejson[index-1];
+    const element = allfilejson[index];
+    if (element.STT === undefined){
+      allfilejson[index-1] = combinesobject(elementpre,element)
+    }
+  }
+
+    filterdata = allfilejson.filter(filejson=>{
+    return filejson.STT !== undefined
   })
-  console.log(filterdata);
 }
