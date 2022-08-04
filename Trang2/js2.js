@@ -7,6 +7,7 @@ const deletecurrentfile = document.getElementById('button-delete-files')
 let selectedFile;
 let allfilejson;
 let filterdata;
+let selectedclass=[];
 
 // sự kiện thả tệp
 function showimgfileex() {
@@ -104,6 +105,19 @@ function tbbody(stringbody)
   });
 }
 
+function seteventfortable(){
+  var rows = document.getElementsByTagName("table")[0].rows;
+  
+  for (i = 1; i < rows.length; i++) {
+    rows[i].onclick = function(){ 
+      return function(){
+        selectedclass.push(this.cells[0].innerHTML);
+        document.getElementById('input-string').innerHTML = selectedclass
+      }
+    }(rows[i]);
+  }
+}
+
 function jsontotable(filejson){
   tabledata +='<table>'
   tabledata +='<thead><tr>'
@@ -119,7 +133,10 @@ function jsontotable(filejson){
   tabledata +='</table>'
   document.getElementById('table-data').innerHTML=tabledata
   document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
+
+  seteventfortable()
 }
+
 
 function combinesobject(Objectindex,Objectcombine){
     for (var key in Objectindex) {
@@ -144,4 +161,12 @@ function filterdtdc(){
     filterdata = allfilejson.filter(filejson=>{
     return filejson.STT !== undefined
   })
+}
+
+// ------------------------------------------------------------------------
+
+
+const listclass = document.getElementsByClassName('button-listclass')[0]
+listclass.onclick= function(){
+  document.getElementsByClassName('listclass')[0].classList.toggle('listclass-hide')
 }
