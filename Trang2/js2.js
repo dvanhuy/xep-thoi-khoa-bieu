@@ -17,7 +17,6 @@ function showimgfileex() {
     titlefiles[0].classList.add('get-file-title-hide')
   }
 
-
 dropFilejson.ondragover = function (evt) {
   evt.preventDefault();
 };
@@ -53,25 +52,14 @@ deletecurrentfile.onclick = function () {
 }
 
 // ------------------------------------------------------------------
-function fccallback(callback){
-  var reader = new FileReader();
-  reader.readAsText(selectedFile)
-  reader.onload = function(event) {
-    let fileContent = JSON.parse(event.target.result);
-    allfilejson = fileContent
-  };
-  console.log('o trong');
-  dropFilejson.setAttribute('style','display: none;')
-  callback(allfilejson);
-}
-
+                      // Đọc file json
+// ------------------------------------------------------------------
 
 const readjsonfile = document.getElementById('button-read')
+let tabledata=""
+
 readjsonfile.onclick= function(){
     if(selectedFile){
-      // fccallback(data=>{
-      //   console.log(data);
-      // })
       var reader = new FileReader();
       reader.readAsText(selectedFile)
       reader.onload = function(event) {
@@ -89,7 +77,9 @@ readjsonfile.onclick= function(){
     }
 }
 
-let tabledata=""
+// ------------------------------------------------------------------
+                    // chuyển file json thành table
+// ------------------------------------------------------------------
 
 function tbhead(stringhead)
 {
@@ -111,8 +101,11 @@ function seteventfortable(){
   for (i = 1; i < rows.length; i++) {
     rows[i].onclick = function(){ 
       return function(){
-        selectedclass.push(this.cells[0].innerHTML);
-        document.getElementById('input-string').innerHTML = selectedclass
+        let cellvalue = this.cells[0].innerHTML
+        if (!selectedclass.includes(cellvalue)) {
+          selectedclass.push(cellvalue);
+          document.getElementById('input-string').innerHTML = selectedclass
+        }
       }
     }(rows[i]);
   }
@@ -137,6 +130,9 @@ function jsontotable(filejson){
   seteventfortable()
 }
 
+// ------------------------------------------------------------------
+                    // lọc dữ liệu rỗng
+// ------------------------------------------------------------------
 
 function combinesobject(Objectindex,Objectcombine){
     for (var key in Objectindex) {
@@ -163,8 +159,33 @@ function filterdtdc(){
   })
 }
 
-// ------------------------------------------------------------------------
+// ------------------------------------------------------------------
+                    // array to json
+// ------------------------------------------------------------------
+arraytest= [1,2,3,4]
+// function arraytojson(array){
+//   array.forEach(element => {
+    
+//   });
+// }
+function test(){
+  // var xaas= filterdata.filter(()=>{
+  //   return filterdata.STT === 2
+  // })
+  // console.log(xaas)
+  console.log(filterdata[1].STT)
+  
+}
+function idtoobject(id){
+  return filterdata.filter(()=>{
+    return filterdata.STT === id
+  })
+}
 
+
+// ------------------------------------------------------------------
+                    // sự kiện chuyển cảnh
+// ------------------------------------------------------------------
 
 const listclass = document.getElementsByClassName('button-listclass')[0]
 listclass.onclick= function(){
