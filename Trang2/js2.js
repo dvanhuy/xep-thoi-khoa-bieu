@@ -190,9 +190,7 @@ const listcontent = document.getElementsByClassName('listclass')[0];
 const btlistclass = document.getElementsByClassName('button-listclass')[0]
 
 btlistclass.onclick= function(){
-  // hien   //   an
   listcontent.classList.toggle('listclass-hide')
-  // -> an // ->hien
   listcontent.style.removeProperty("width");
   btlistclass.style.removeProperty("right");
   if (!listcontent.classList.contains('listclass-hide')) {
@@ -206,7 +204,7 @@ btlistclass.onclick= function(){
 var resizer = document.createElement('div');
 resizer.style.width = '10px';
 resizer.style.height = '100%';
-resizer.style.background = 'red';
+resizer.style.background = 'transparent';
 resizer.style.position = 'absolute';
 resizer.style.left = 0;
 resizer.style.bottom = 0;
