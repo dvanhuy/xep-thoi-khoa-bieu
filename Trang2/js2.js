@@ -1,4 +1,4 @@
-
+// Khai báo
 const cirloading = document.getElementsByClassName('loading')
 const titlefiles = document.getElementsByClassName('get-file-title')
 const dropFilejson = document.getElementById('get-file')
@@ -51,140 +51,9 @@ deletecurrentfile.onclick = function () {
   selectedFile = undefined
 }
 
-// ------------------------------------------------------------------
-                      // Đọc file json
-// ------------------------------------------------------------------
-
-const readjsonfile = document.getElementById('button-read')
-let tabledata=""
-
-readjsonfile.onclick= function(){
-    if(selectedFile){
-      var reader = new FileReader();
-      reader.readAsText(selectedFile)
-      reader.onload = function(event) {
-        let fileContent = JSON.parse(event.target.result);
-        allfilejson = fileContent
-      };
-      dropFilejson.setAttribute('style','display: none;')
-      setTimeout(() => {
-        filterdtdc()
-        jsontotable(filterdata)
-      }, 500);
-    }
-    else{
-        document.getElementById('files-source').click()
-    }
-}
 
 // ------------------------------------------------------------------
-                    // chuyển file json thành table
-// ------------------------------------------------------------------
-
-function tbhead(stringhead)
-{
-  stringhead.forEach(index => {
-    tabledata+= '<th>'+index+'</th>'
-  });
-}
-
-function tbbody(stringbody)
-{
-  stringbody.forEach(index => {
-    tabledata+= '<td>'+index+'</td>'
-  });
-}
-
-function seteventfortable(){
-  var rows = document.getElementsByTagName("table")[0].rows;
-  
-  for (i = 1; i < rows.length; i++) {
-    rows[i].onclick = function(){ 
-      return function(){
-        let cellvalue = this.cells[0].innerHTML
-        if (!selectedclass.includes(cellvalue)) {
-          selectedclass.push(cellvalue);
-          document.getElementById('input-string').innerHTML = selectedclass
-        }
-      }
-    }(rows[i]);
-  }
-}
-
-function jsontotable(filejson){
-  tabledata +='<table>'
-  tabledata +='<thead><tr>'
-  tbhead(Object.keys(filejson[0]))
-  tabledata +='</tr></thead>'
-  tabledata +='<tbody>'
-  filejson.forEach(row => {
-    tabledata +='<tr>'
-    tbbody(Object.values(row))
-    tabledata +='</tr>'
-  });
-  tabledata +='</tbody>'
-  tabledata +='</table>'
-  document.getElementById('table-data').innerHTML=tabledata
-  document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
-
-  seteventfortable()
-}
-
-// ------------------------------------------------------------------
-                    // lọc dữ liệu rỗng
-// ------------------------------------------------------------------
-
-function combinesobject(Objectindex,Objectcombine){
-    for (var key in Objectindex) {
-      if (Objectcombine[key] !== undefined)
-      {
-        Objectindex[key] = Objectindex[key] +" - " +Objectcombine[key];
-      }
-    }
-    return Objectindex;
-
-}
-
-function filterdtdc(){
-  for (let index = 1; index < allfilejson.length; index++) {
-    const elementpre = allfilejson[index-1];
-    const element = allfilejson[index];
-    if (element.STT === undefined){
-      allfilejson[index-1] = combinesobject(elementpre,element)
-    }
-  }
-
-    filterdata = allfilejson.filter(filejson=>{
-    return filejson.STT !== undefined
-  })
-}
-
-// ------------------------------------------------------------------
-                    // array to json
-// ------------------------------------------------------------------
-arraytest= [1,2,3,4]
-// function arraytojson(array){
-//   array.forEach(element => {
-    
-//   });
-// }
-function test(){
-  // var xaas= filterdata.filter(()=>{
-  //   return filterdata.STT === 2
-  // })
-  // console.log(xaas)
-  console.log(filterdata[1].STT)
-  
-}
-function idtoobject(id){
-  return filterdata.filter(()=>{
-    return filterdata.STT === id
-  })
-}
-
-
-// ------------------------------------------------------------------
-                    // sự kiện chuyển cảnh
+                // sự kiện chuyển cảnh menu bên phải
 // ------------------------------------------------------------------
 const listcontent = document.getElementsByClassName('listclass')[0];
 const btlistclass = document.getElementsByClassName('button-listclass')[0]
@@ -196,10 +65,11 @@ btlistclass.onclick= function(){
   if (!listcontent.classList.contains('listclass-hide')) {
     listcontent.style.width = widthtemp;
     btlistclass.style.right = widthtemp;
+    if (!selectedclass.length == 0) {
+      document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed())
+    }
   }
 }
-
-// resize menu
 
 var resizer = document.createElement('div');
 resizer.style.width = '10px';
@@ -209,6 +79,7 @@ resizer.style.position = 'absolute';
 resizer.style.left = 0;
 resizer.style.bottom = 0;
 resizer.style.cursor = 'e-resize';
+resizer.style.zIndex = '10';
 //Append Child to Element
 listcontent.appendChild(resizer);
 //box function onmousemove
@@ -236,3 +107,127 @@ function stopResize(e) {
     listcontent.style.transition = '0.2s linear'
     btlistclass.style.transition = '0.2s linear'
 }
+
+// ------------------------------------------------------------------
+                      // Đọc file json
+// ------------------------------------------------------------------
+
+const readjsonfile = document.getElementById('button-read')
+
+readjsonfile.onclick= function(){
+    if(selectedFile){
+      var reader = new FileReader();
+      reader.readAsText(selectedFile)
+      reader.onload = function(event) {
+        let fileContent = JSON.parse(event.target.result);
+        allfilejson = fileContent
+      };
+      dropFilejson.setAttribute('style','display: none;')
+      setTimeout(() => {
+        filterdtdc()
+        filtertablemain()
+      }, 500);
+    }
+    else{
+        document.getElementById('files-source').click()
+    }
+}
+
+// ------------------------------------------------------------------
+                    // lọc dữ liệu rỗng
+// ------------------------------------------------------------------
+
+function combinesobject(Objectindex,Objectcombine){
+  for (var key in Objectindex) {
+    if (Objectcombine[key] !== undefined)
+    {
+      Objectindex[key] = Objectindex[key] +" - " +Objectcombine[key];
+    }
+  }
+  return Objectindex;
+
+}
+
+function filterdtdc(){
+for (let index = 1; index < allfilejson.length; index++) {
+  const elementpre = allfilejson[index-1];
+  const element = allfilejson[index];
+  if (element.STT === undefined){
+    allfilejson[index-1] = combinesobject(elementpre,element)
+  }
+}
+
+  filterdata = allfilejson.filter(filejson=>{
+  return filejson.STT !== undefined
+})
+}
+
+
+// ------------------------------------------------------------------
+         // chuyển file json thành table vs sự kiện cho từng row
+// ------------------------------------------------------------------
+
+function tbhead(head)
+{
+  var result = ''
+  head.forEach(index => {
+    result+= '<th>'+index+'</th>'
+  });
+  return result
+}
+
+function tbbody(body)
+{
+  var result = ''
+  body.forEach(index => {
+    result+= '<td>'+index+'</td>'
+  });
+  return result
+}
+
+function jsontotable(filejson){
+  let tabledata=''
+  tabledata +='<table>'
+  tabledata +='<thead><tr>'
+  tabledata += tbhead(Object.keys(filejson[0]),tabledata)
+  tabledata +='</tr></thead>'
+  tabledata +='<tbody>'
+  filejson.forEach(row => {
+    tabledata +='<tr>'
+    tabledata += tbbody(Object.values(row),tabledata)
+    tabledata +='</tr>'
+  });
+  tabledata +='</tbody>'
+  tabledata +='</table>'
+  return tabledata
+}
+
+function seteventformaintable(){
+  var rows = document.querySelector('.table-data table').rows;
+  for (i = 1; i < rows.length; i++) {
+    rows[i].onclick = function(){ 
+      return function(){
+        let cellvalue = this.cells[0].innerHTML
+        if (!selectedclass.includes(cellvalue)) {
+          selectedclass.push(cellvalue);
+        }
+      }
+    }(rows[i]);
+  }
+}
+
+function filtertablemain(){
+  document.getElementById('table-data').innerHTML=jsontotable(filterdata)
+  document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
+  seteventformaintable()
+}
+
+function addTablechoosed(){
+  let result = []
+  //truyền vào string nên ko so sánh nghiêm ngặt, lỗi :V
+  selectedclass.forEach(element => {
+    result.push(filterdata.find(filejson=> filejson.STT == element ))
+  });
+  return result
+}
+
