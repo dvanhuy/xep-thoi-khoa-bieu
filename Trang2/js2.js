@@ -186,8 +186,55 @@ function idtoobject(id){
 // ------------------------------------------------------------------
                     // sự kiện chuyển cảnh
 // ------------------------------------------------------------------
+const listcontent = document.getElementsByClassName('listclass')[0];
+const btlistclass = document.getElementsByClassName('button-listclass')[0]
 
-const listclass = document.getElementsByClassName('button-listclass')[0]
-listclass.onclick= function(){
-  document.getElementsByClassName('listclass')[0].classList.toggle('listclass-hide')
+btlistclass.onclick= function(){
+  // hien   //   an
+  listcontent.classList.toggle('listclass-hide')
+  // -> an // ->hien
+  listcontent.style.removeProperty("width");
+  btlistclass.style.removeProperty("right");
+  if (!listcontent.classList.contains('listclass-hide')) {
+    listcontent.style.width = widthtemp;
+    btlistclass.style.right = widthtemp;
+  }
+}
+
+// resize menu
+
+var resizer = document.createElement('div');
+resizer.style.width = '10px';
+resizer.style.height = '100%';
+resizer.style.background = 'red';
+resizer.style.position = 'absolute';
+resizer.style.left = 0;
+resizer.style.bottom = 0;
+resizer.style.cursor = 'e-resize';
+//Append Child to Element
+listcontent.appendChild(resizer);
+//box function onmousemove
+resizer.addEventListener('mousedown', initResize, false);
+
+//Window funtion mousemove & mouseup
+function initResize(e) {
+  listcontent.style.transition = 'none'
+  btlistclass.style.transition = 'none'
+  window.addEventListener('mousemove', Resize, false);
+  window.addEventListener('mouseup', stopResize, false);
+}
+//resize the element
+let widthtemp
+function Resize(e) {
+  widthtemp = (window.innerWidth - e.clientX) + 'px'
+  listcontent.style.width = widthtemp;
+  btlistclass.style.right = widthtemp;
+  // console.log(element.offsetLeft,element.offsetTop);
+}
+//on mouseup remove windows functions mousemove & mouseup
+function stopResize(e) {
+    window.removeEventListener('mousemove', Resize, false);
+    window.removeEventListener('mouseup', stopResize, false);
+    listcontent.style.transition = '0.2s linear'
+    btlistclass.style.transition = '0.2s linear'
 }
