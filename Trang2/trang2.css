@@ -293,11 +293,11 @@
   width: 60px;
   height: 60px;
   background-color: whitesmoke;
+  border-radius: 50%;
   position: fixed;
   top: 50%;
   right: 500px;
   transform: translate(50%, -50%);
-  border-radius: 50%;
   cursor: pointer;
   box-sizing: border-box;
   border: 1px solid black;
@@ -343,4 +343,128 @@
   opacity: 0.5;
   width: 100vw;
   height: 100vh;
+}
+
+.listclass {
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.listclass-head {
+  font-family: "Patrick Hand", cursive;
+  width: 100%;
+  text-align: center;
+}
+.listclass-head-title {
+  color: red;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.listclass-head-note {
+  padding: 5px 10px;
+  font-size: 27px;
+}
+.listclass-head-note span:first-child {
+  color: blue;
+  -webkit-text-decoration: underline blue;
+          text-decoration: underline blue;
+  text-underline-offset: 3px;
+  margin-right: 10px;
+}
+.listclass-head-note span:last-child {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+.listclass-head-note span:last-child::before {
+  content: "-";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: -10px;
+  margin-left: -10px;
+  color: white;
+}
+.listclass-head-amount {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.listclass-head-amount span {
+  color: red;
+}
+.listclass .listclass-table {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.listclass .listclass-table table {
+  font-size: 20px;
+  width: 100%;
+  border-spacing: 0px;
+  text-align: center;
+  border: 1px solid black;
+}
+.listclass .listclass-table table thead {
+  font-family: "Cabin", sans-serif;
+  background-color: lightblue;
+  color: red;
+}
+.listclass .listclass-table table thead tr {
+  height: 100px;
+}
+.listclass .listclass-table table thead tr th {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.listclass .listclass-table table tbody {
+  font-family: "Pangolin", cursive;
+}
+.listclass .listclass-table table tbody tr {
+  height: 100px;
+  font-size: 18px;
+  height: 90px;
+}
+.listclass .listclass-table table tbody tr:hover {
+  background-color: rgb(163, 255, 163);
+}
+.listclass .listclass-table table tbody tr td {
+  cursor: pointer;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.listclass .listclass-table table thead tr {
+  height: 50px;
+}
+.listclass .listclass-table table tbody tr {
+  height: 60px;
+}
+.listclass .listclass-table table tr td div {
+  position: relative;
+  margin: 0 10px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  cursor: help;
+}
+.listclass .listclass-table table tr td div::before {
+  content: "-";
+  position: absolute;
+  margin: 0 -10px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
 }/*# sourceMappingURL=trang2.css.map */

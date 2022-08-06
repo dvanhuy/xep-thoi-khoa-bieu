@@ -4,6 +4,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@mixin  circle($size : 50px , $bgcolor : transparent)
+{
+    width: $size;
+    height: $size;
+    background-color: $bgcolor;
+    border-radius: 50%;
+}
+@mixin tableformat {
+    font-size: 20px;
+    width: 100%;
+    border-spacing: 0px;
+    text-align: center;
+    border: 1px solid black;
+    thead{
+        font-family: 'Cabin', sans-serif;
+        background-color: lightblue;
+        color: red;
+        tr{
+            height: 100px;
+            th{
+                border: 1px solid black;
+                box-sizing: border-box;
+            }
+        }
+    }
+    tbody{
+        font-family: 'Pangolin', cursive;
+        tr{
+            &:hover{
+                background-color: rgb(163, 255, 163);
+            }
+            height: 100px;
+            font-size: 18px;
+            height: 90px;
+            td{
+                cursor: pointer;
+                border: 1px solid black;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
 
 .main-content{
     position: absolute;
@@ -250,53 +292,18 @@
     .table-data{
         width: 100%;
         table{
-            font-size: 20px;
-            width: 100%;
-            border-spacing: 0px;
-            text-align: center;
-            border: 1px solid black;
-            thead{
-                font-family: 'Cabin', sans-serif;
-                background-color: lightblue;
-                color: red;
-                tr{
-                    height: 100px;
-                    th{
-                        border: 1px solid black;
-                        box-sizing: border-box;
-                    }
-                }
-            }
-            tbody{
-                font-family: 'Pangolin', cursive;
-                tr{
-                    &:hover{
-                        background-color: rgb(163, 255, 163);
-                    }
-                    height: 100px;
-                    font-size: 18px;
-                    height: 90px;
-                    td{
-                        cursor: pointer;
-                        border: 1px solid black;
-                        box-sizing: border-box;
-                    }
-                }
-            }
+            @include tableformat;
         }
         
     }
 }
 
 .button-listclass{
-    width: 60px;
-    height: 60px;
-    background-color: whitesmoke;
+    @include circle(60px,whitesmoke);
     position: fixed;
     top: 50%;
     right: 500px;
     transform: translate(50%,-50%);
-    border-radius: 50%;
     cursor: pointer;
     box-sizing: border-box;
     border: 1px solid black;
@@ -342,4 +349,80 @@
     opacity: 0.5;
     width: 100vw;
     height: 100vh;
+}
+
+
+.listclass{
+   overflow-x: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   user-select: none;
+   &-head{
+        font-family: 'Patrick Hand', cursive;
+        width: 100%;
+        text-align: center;
+        &-title{
+            color: red;
+            text-transform: uppercase;
+            font-size: 30px;
+        }
+        &-note{
+            padding: 5px 10px;
+            font-size: 27px;
+            span:first-child{
+                color: blue;
+                text-decoration: underline blue;
+                text-underline-offset: 3px;
+                margin-right: 10px;
+            }
+            span:last-child{
+                position: relative;
+                display: inline-block;
+                @include circle(20px,red);
+                &::before{
+                    content: "-";
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    margin-top: -10px;
+                    margin-left: -10px;
+                    color: white;
+                }
+            }
+        }
+        &-amount{
+            font-size: 20px;
+            padding-bottom: 10px;
+            span{
+                color: red;
+            }
+        }
+   }
+   .listclass-table{
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    table{
+        @include tableformat;
+        thead tr{height: 50px;}
+        tbody tr{height: 60px;}
+        tr td div{
+            position: relative;
+            margin: 0 10px;
+            @include circle(20px,red);
+            cursor: help;
+            &::before{
+                content: "-";
+                position: absolute;
+                margin: 0 -10px;
+                @include circle(20px);
+                text-align: center;
+                color: white;
+            }
+        }
+    }
+   }
 }

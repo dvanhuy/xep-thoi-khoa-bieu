@@ -62,11 +62,27 @@ btlistclass.onclick= function(){
   listcontent.classList.toggle('listclass-hide')
   listcontent.style.removeProperty("width");
   btlistclass.style.removeProperty("right");
+  //mở ra
   if (!listcontent.classList.contains('listclass-hide')) {
+    // chuỗi là string nên sẽ xếp 1 - 12 - 2 -23 - ... . nên ko dùng sort()
+    selectedclass.sort((a,b)=>{
+      return parseInt(a) > parseInt(b) ? 1 : -1
+    });
+    document.querySelector('.listclass-head-amount span').innerHTML = selectedclass.length
+    //width = undefi thì ko gán luôn
     listcontent.style.width = widthtemp;
     btlistclass.style.right = widthtemp;
     if (!selectedclass.length == 0) {
-      document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed())
+      document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
+      (()=>{
+        let tableaddcol=document.querySelectorAll('.listclass-table tr')
+        tableaddcol[0].innerHTML='<th>Xóa</th>'+tableaddcol[0].innerHTML
+        for (let i = 1; i < tableaddcol.length; i++) {
+          const element = tableaddcol[i];
+          element.innerHTML= '<td><div></div></td>'+element.innerHTML
+        }
+      })()
+      seteventfortableclass()
     }
   }
 }
@@ -214,6 +230,10 @@ function seteventformaintable(){
       }
     }(rows[i]);
   }
+}
+
+function seteventfortableclass(){
+  console.log('adsasd');
 }
 
 function filtertablemain(){
