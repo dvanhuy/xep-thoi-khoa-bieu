@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mali&display=swap");
 .main-content {
   position: absolute;
   left: 250px;
@@ -248,7 +249,66 @@
 }
 
 .choose-class {
+  position: relative;
+  margin-top: 10px;
   width: 90%;
+  display: none;
+}
+.choose-class .key-search {
+  border: 1px solid black;
+  border-bottom: none;
+  padding: 10px;
+  font-family: "Mali", cursive;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.choose-class .key-search label {
+  font-size: 22px;
+  margin-top: 3px;
+}
+.choose-class .key-search div.container-text {
+  width: 40%;
+  position: relative;
+}
+.choose-class .key-search div.container-text input[type=text] {
+  width: 100%;
+  height: 30px;
+  font-family: "Mali", cursive;
+  font-size: 20px;
+}
+.choose-class .key-search div.container-text input[type=text]::-moz-placeholder {
+  color: gray;
+  padding-left: 5px;
+}
+.choose-class .key-search div.container-text input[type=text]:-ms-input-placeholder {
+  color: gray;
+  padding-left: 5px;
+}
+.choose-class .key-search div.container-text input[type=text]::placeholder {
+  color: gray;
+  padding-left: 5px;
+}
+.choose-class .key-search div.container-text div.button-clear-text {
+  display: none;
+  width: 18px;
+  height: 18px;
+  background-color: gray;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 16px;
+  right: 0;
+  top: 50%;
+  margin-right: 5px;
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.6;
+  position: absolute;
+}
+.choose-class .key-search select {
+  font-family: "Mali", cursive;
+  width: 150px;
+  font-size: 20px;
 }
 .choose-class .table-data {
   width: 100%;

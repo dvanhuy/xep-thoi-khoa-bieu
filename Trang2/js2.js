@@ -10,7 +10,7 @@ let filterdata;
 let selectedclass=[];
 
 // sự kiện thả tệp
-function showimgfileex() {
+function showimgfilejson() {
     document.getElementsByClassName('file-json-name')[0].innerHTML = selectedFile.name
     imgfilejson.classList.remove('file-json-hide')
     cirloading[0].classList.add('loading-hide')
@@ -31,7 +31,7 @@ dropFilejson.ondrop = function (evt) {
   titlefiles[0].classList.add('get-file-title-hide')
   selectedFile = evt.dataTransfer.files[0]
   if (selectedFile) {
-    showimgfileex()
+    showimgfilejson()
   }
 };
 
@@ -39,7 +39,7 @@ dropFilejson.ondrop = function (evt) {
 document.getElementById("files-source").addEventListener("change", (event) => {
   selectedFile = event.target.files[0];
   if (selectedFile) {
-    showimgfileex()
+    showimgfilejson()
   }
 })
 
@@ -133,8 +133,14 @@ readjsonfile.onclick= function(){
       };
       dropFilejson.setAttribute('style','display: none;')
       setTimeout(() => {
+        document.getElementsByClassName('choose-class')[0].setAttribute('style','display: block;')
         filterdtdc()
-        filtertablemain()
+        filtertablemain();
+        let keyoption ='' 
+        Object.keys(filterdata[0]).forEach(element => {
+          keyoption += '<option value="'+element+'">'+element+'</option>'
+        });
+        document.querySelector('select#key-class').innerHTML += keyoption
       }, 500);
     }
     else{
@@ -237,7 +243,8 @@ function seteventfortableclass(){
   for (i = 1; i < rows.length; i++) {
     // đéo hiểu cho lắm :V SOS
     rows[i].cells[0].firstChild.onclick = function(value){
-      return function(){
+      //sẽ chạy với số lần bằng số cột
+      return function(){ // hàm trả về chỉ chạy khi đuọc nhấn nút
         const valuedelete = value.cells[1].innerHTML
         selectedclass.splice(selectedclass.indexOf(valuedelete),1)
         document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
@@ -275,3 +282,21 @@ function addcolumnDel(){
   }
 }
 
+// ------------------------------------------------------------------
+                    // search data
+// ------------------------------------------------------------------
+const textsearch = document.querySelector('input#text-search')
+const btcleartxt = document.querySelector('div.button-clear-text')
+console.log(textsearch);
+textsearch.oninput = function(){ // dùng textsearch.addEventListener("input",()=>{}) cx dc
+  if (textsearch.value == ''){
+    btcleartxt.style.display = 'none'
+  }
+  else{
+    btcleartxt.style.display = 'block'
+  }
+}
+btcleartxt.onclick = ()=> {
+  textsearch.value = ''
+  btcleartxt.style.display = 'none'
+}

@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
 @mixin  circle($size : 50px , $bgcolor : transparent)
 {
     width: $size;
@@ -288,7 +289,56 @@
 }
 
 .choose-class{
+    position: relative;
+    margin-top: 10px;
     width: 90%;
+    display: none;
+    .key-search{
+        border: 1px solid black;
+        border-bottom: none;
+        padding: 10px;
+        font-family: 'Mali', cursive;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        label{
+            font-size: 22px;
+            margin-top: 3px;
+        }
+        div.container-text{
+            width: 40%;
+            position: relative;
+            input[type='text']{
+                width: 100%;
+                height: 30px;
+                font-family: 'Mali', cursive;
+                font-size: 20px;
+                &::placeholder{
+                    color: gray;
+                    padding-left: 5px;
+                }
+            }
+            div.button-clear-text{
+                display: none;
+                @include circle(18px ,gray);
+                text-align: center;
+                line-height: 16px;
+                right: 0;
+                top: 50%;
+                margin-right: 5px;
+                transform: translateY(-50%) rotate(45deg);
+                opacity: 0.6;
+                position: absolute;
+            }
+        }
+        select{
+            font-family: 'Mali', cursive;
+            width: 150px;
+            font-size: 20px;
+        }
+    }
+
     .table-data{
         width: 100%;
         table{
