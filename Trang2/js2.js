@@ -74,14 +74,7 @@ btlistclass.onclick= function(){
     btlistclass.style.right = widthtemp;
     if (!selectedclass.length == 0) {
       document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
-      (()=>{
-        let tableaddcol=document.querySelectorAll('.listclass-table tr')
-        tableaddcol[0].innerHTML='<th>Xóa</th>'+tableaddcol[0].innerHTML
-        for (let i = 1; i < tableaddcol.length; i++) {
-          const element = tableaddcol[i];
-          element.innerHTML= '<td><div></div></td>'+element.innerHTML
-        }
-      })()
+      addcolumnDel()
       seteventfortableclass()
     }
   }
@@ -202,25 +195,32 @@ function tbbody(body)
 }
 
 function jsontotable(filejson){
-  let tabledata=''
-  tabledata +='<table>'
-  tabledata +='<thead><tr>'
-  tabledata += tbhead(Object.keys(filejson[0]),tabledata)
-  tabledata +='</tr></thead>'
-  tabledata +='<tbody>'
-  filejson.forEach(row => {
-    tabledata +='<tr>'
-    tabledata += tbbody(Object.values(row),tabledata)
-    tabledata +='</tr>'
-  });
-  tabledata +='</tbody>'
-  tabledata +='</table>'
-  return tabledata
+  if (filejson == null || filejson == undefined || filejson.length == 0) {
+    return ''
+  } 
+  else {
+    let tabledata=''
+    tabledata +='<table>'
+    tabledata +='<thead><tr>'
+    tabledata += tbhead(Object.keys(filejson[0]),tabledata)
+    tabledata +='</tr></thead>'
+    tabledata +='<tbody>'
+    filejson.forEach(row => {
+      tabledata +='<tr>'
+      tabledata += tbbody(Object.values(row),tabledata)
+      tabledata +='</tr>'
+    });
+    tabledata +='</tbody>'
+    tabledata +='</table>'
+    return tabledata
+  }
+  
 }
 
 function seteventformaintable(){
   var rows = document.querySelector('.table-data table').rows;
   for (i = 1; i < rows.length; i++) {
+    // không hiểu cấu trúc này
     rows[i].onclick = function(){ 
       return function(){
         let cellvalue = this.cells[0].innerHTML
@@ -233,7 +233,22 @@ function seteventformaintable(){
 }
 
 function seteventfortableclass(){
-  console.log('adsasd');
+  var rows = document.querySelector('.listclass-table table').rows;
+  for (i = 1; i < rows.length; i++) {
+    // đéo hiểu cho lắm :V SOS
+    rows[i].cells[0].firstChild.onclick = function(value){
+      return function(){
+        const valuedelete = value.cells[1].innerHTML
+        selectedclass.splice(selectedclass.indexOf(valuedelete),1)
+        document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
+        document.querySelector('.listclass-head-amount span').innerHTML = selectedclass.length
+        if (!selectedclass.length == 0) {
+          addcolumnDel()
+          seteventfortableclass()
+        }
+      }
+    }(rows[i])
+  }
 }
 
 function filtertablemain(){
@@ -249,5 +264,14 @@ function addTablechoosed(){
     result.push(filterdata.find(filejson=> filejson.STT == element ))
   });
   return result
+}
+
+function addcolumnDel(){
+  let tableaddcol=document.querySelectorAll('.listclass-table tr')
+  tableaddcol[0].innerHTML='<th>Xóa</th>'+tableaddcol[0].innerHTML
+  for (let i = 1; i < tableaddcol.length; i++) {
+    const element = tableaddcol[i];
+    element.innerHTML= '<td><div></div></td>'+element.innerHTML
+  }
 }
 
