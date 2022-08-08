@@ -223,8 +223,8 @@ function jsontotable(filejson){
   
 }
 
-function seteventformaintable(){
-  var rows = document.querySelector('.table-data table').rows;
+function seteventformaintable(elementtable){
+  var rows = elementtable.rows;
   for (i = 1; i < rows.length; i++) {
     // không hiểu cấu trúc này
     rows[i].onclick = function(){ 
@@ -261,7 +261,7 @@ function seteventfortableclass(){
 function filtertablemain(){
   document.getElementById('table-data').innerHTML=jsontotable(filterdata)
   document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
-  seteventformaintable()
+  seteventformaintable(document.querySelector('.table-data table'))
 }
 
 function addTablechoosed(){
@@ -305,24 +305,27 @@ btcleartxt.onclick = ()=> {
 }
 
 btsearchtext.onclick = function(){
-  let next = true
-  if (selectkeyclass.value == 'Chọn khóa' && next)
+  if (selectkeyclass.value == 'Chọn khóa')
   {
     selectkeyclass.focus()
-    next = false
   }
-  // if (textsearch.value == '' && next)
-  // {
-  //   textsearch.focus()
-  //   next = false
-  // }
-  if (next) {
+  else {
     const key = selectkeyclass.value
     const text = textsearch.value.toLowerCase()
     searchclass = filterdata.filter((data)=>{
       return data[key].toString().toLowerCase().indexOf(text) !== -1
     })
-    console.log(searchclass);
+    let tablesearch=''
+    tablesearch +='<tbody>'
+    searchclass.forEach(row => {
+      tablesearch +='<tr>'
+      tablesearch += tbbody(Object.values(row),tablesearch)
+      tablesearch +='</tr>'
+    });
+    tablesearch +='</tbody>'
+    var tablenew=document.querySelector('#table-data table tbody')
+    tablenew.innerHTML = tablesearch
+    seteventformaintable(tablenew)
   }
 
 }
