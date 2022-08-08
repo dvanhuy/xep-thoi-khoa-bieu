@@ -287,7 +287,10 @@ function addcolumnDel(){
 // ------------------------------------------------------------------
 const textsearch = document.querySelector('input#text-search')
 const btcleartxt = document.querySelector('div.button-clear-text')
-console.log(textsearch);
+const btsearchtext = document.getElementsByClassName('button-search-text')[0]
+const selectkeyclass = document.querySelector('select#key-class')
+let searchclass
+
 textsearch.oninput = function(){ // dùng textsearch.addEventListener("input",()=>{}) cx dc
   if (textsearch.value == ''){
     btcleartxt.style.display = 'none'
@@ -300,3 +303,33 @@ btcleartxt.onclick = ()=> {
   textsearch.value = ''
   btcleartxt.style.display = 'none'
 }
+
+btsearchtext.onclick = function(){
+  let next = true
+  if (selectkeyclass.value == 'Chọn khóa' && next)
+  {
+    selectkeyclass.focus()
+    next = false
+  }
+  // if (textsearch.value == '' && next)
+  // {
+  //   textsearch.focus()
+  //   next = false
+  // }
+  if (next) {
+    const key = selectkeyclass.value
+    const text = textsearch.value.toLowerCase()
+    searchclass = filterdata.filter((data)=>{
+      return data[key].toString().toLowerCase().indexOf(text) !== -1
+    })
+    console.log(searchclass);
+  }
+
+}
+
+textsearch.onkeyup = function(event){
+  if (event.keyCode == 13){
+    btsearchtext.click()
+  }
+}
+
