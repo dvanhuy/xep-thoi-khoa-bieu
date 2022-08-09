@@ -349,9 +349,21 @@ buttonshowdetail.onclick = function(){
 
 const buttonaddall = document.getElementsByClassName('bt-add-all-class')[0]
 buttonaddall.onclick = function(){
-  var addall = searchclass.map(element=>{
-    return element.STT
-  })
-  selectedclass.push(...addall)
+  const addall = searchclass.map((element)=>{
+    return element.STT;
+  });
+  // selectedclass.push(...addall)
+  mess.style.removeProperty("display");
+  addall.forEach(element => {
+    if (!selectedclass.includes(element.toString())) {
+      selectedclass.push(element.toString());
+    }
+  });
+  
 }
+const mess = document.getElementsByClassName('message')[0]
+mess.style.display = 'none'
+mess.addEventListener('animationend',()=>{
+    mess.style.display = 'none'
+})
 

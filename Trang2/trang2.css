@@ -596,4 +596,50 @@
   border-radius: 50%;
   text-align: center;
   color: white;
+}
+
+.message {
+  border: 1px solid black;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 35px;
+  width: 200px;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgb(213, 213, 213);
+  -webkit-animation: show-mess 2s 1 linear forwards;
+          animation: show-mess 2s 1 linear forwards;
+}
+.message-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(99, 99, 255);
+  border-radius: 50%;
+  line-height: 50px;
+  text-align: center;
+  color: black;
+}
+
+@-webkit-keyframes show-mess {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-mess {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=trang2.css.map */
