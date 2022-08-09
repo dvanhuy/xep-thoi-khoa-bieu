@@ -389,6 +389,7 @@ function savefile(filename, datastring){
 btclearexport.onclick = function(){
   if (selectedclass.length != 0){
     var datajsonreturn = selectedidtoobobject()
-    savefile('class.json',JSON.stringify(datajsonreturn))
+    // savefile('class.json',JSON.stringify(datajsonreturn))
+    savefile('class.json',JSON.stringify(datajsonreturn,undefined,3))
   }
 }
