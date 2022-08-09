@@ -522,29 +522,51 @@
         }
    }
    .listclass-table{
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: 20px;
-    table{
-        @include tableformat;
-        thead tr{height: 50px;}
-        tbody tr{height: 60px;}
-        tr td div{
-            position: relative;
-            margin: 0 10px;
-            @include circle(20px,red);
-            cursor: help;
-            &::before{
-                content: "-";
-                position: absolute;
-                margin: 0 -10px;
-                @include circle(20px);
-                text-align: center;
-                color: white;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 20px;
+        table{
+            @include tableformat;
+            thead tr{height: 50px;}
+            tbody tr{height: 60px;}
+            tr td div{
+                position: relative;
+                margin: 0 10px;
+                @include circle(20px,red);
+                cursor: help;
+                &::before{
+                    content: "-";
+                    position: absolute;
+                    margin: 0 -10px;
+                    @include circle(20px);
+                    text-align: center;
+                    color: white;
+                }
             }
         }
     }
-   }
+    &-button{
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: #000;
+        div{
+            padding: 10px 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px #aaaaaa;
+            cursor: pointer;
+        }
+        &-clear{
+            background-color: red;
+        }
+        &-export{
+            background-color: rgb(41, 234, 41);
+        }
+    }
 }
 
 .message{

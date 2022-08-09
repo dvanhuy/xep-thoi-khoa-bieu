@@ -73,7 +73,7 @@ btlistclass.onclick= function(){
     listcontent.style.width = widthtemp;
     btlistclass.style.right = widthtemp;
     if (!selectedclass.length == 0) {
-      document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
+      document.getElementById('listclass-table').innerHTML=jsontotable(selectedidtoobobject());
       addcolumnDel()
       seteventfortableclass()
     }
@@ -247,7 +247,7 @@ function seteventfortableclass(){
       return function(){ // hàm trả về chỉ chạy khi đuọc nhấn nút
         const valuedelete = value.cells[1].innerHTML
         selectedclass.splice(selectedclass.indexOf(valuedelete),1)
-        document.getElementById('listclass-table').innerHTML=jsontotable(addTablechoosed());
+        document.getElementById('listclass-table').innerHTML=jsontotable(selectedidtoobobject());
         document.querySelector('.listclass-head-amount span').innerHTML = selectedclass.length
         if (!selectedclass.length == 0) {
           addcolumnDel()
@@ -265,7 +265,7 @@ function filtertablemain(){
   numrow.innerHTML=filterdata.length
 }
 
-function addTablechoosed(){
+function selectedidtoobobject(){
   let result = []
   //truyền vào string nên ko so sánh nghiêm ngặt, lỗi :V
   selectedclass.forEach(element => {
@@ -303,6 +303,7 @@ textsearch.oninput = function(){ // dùng textsearch.addEventListener("input",()
 btcleartxt.onclick = ()=> {
   textsearch.value = ''
   btcleartxt.style.display = 'none'
+  textsearch.focus()
 }
 
 btsearchtext.onclick = function(){
@@ -367,3 +368,27 @@ mess.addEventListener('animationend',()=>{
     mess.style.display = 'none'
 })
 
+// ------------------------------------------------------------------
+                    // button list class
+// ------------------------------------------------------------------
+const btclearclass = document.getElementsByClassName('listclass-button-clear')[0]
+const btclearexport = document.getElementsByClassName('listclass-button-export')[0]
+btclearclass.onclick = function(){
+  selectedclass=[]
+  document.getElementById('listclass-table').innerHTML=''
+  document.querySelector('.listclass-head-amount span').innerHTML = '0'
+}
+
+function savefile(filename, datastring){
+  var a = document.createElement("a");
+  var file = new Blob([datastring], { type: "text/plain" });
+  a.href = URL.createObjectURL(file);
+  a.download = filename;
+  a.click();
+}
+btclearexport.onclick = function(){
+  if (selectedclass.length != 0){
+    var datajsonreturn = selectedidtoobobject()
+    savefile('class.json',JSON.stringify(datajsonreturn))
+  }
+}

@@ -67,7 +67,7 @@ buttoncheck.onclick = function () {
           let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
           console.log(rowObject);
           allfilejson = JSON.stringify(rowObject, undefined, 4)
-          savefile('../source.json',allfilejson)
+          savefile('source.json',allfilejson)
         });
       }
 
