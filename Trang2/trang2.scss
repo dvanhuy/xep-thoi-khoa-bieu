@@ -294,8 +294,11 @@
     width: 90%;
     display: none;
     .key-search{
+        position: relative;
         border: 1px solid black;
         border-bottom: none;
+        height: 50px;
+        align-items: center;
         padding: 10px;
         font-family: 'Mali', cursive;
         font-size: 20px;
@@ -348,6 +351,62 @@
             cursor: pointer;
             box-shadow: 3px 3px 5px #aaaaaa;
         }
+        div.button-show-detail{
+            &-rotate{
+                transform: rotate(180deg);
+            }
+            position: absolute;
+            display: block;
+            @include circle(30px);
+            right: 0;
+            bottom: 0;
+            line-height: 30px;
+            text-align: center;
+            transition: 0.1s linear;
+            &:hover{
+                background-color: #aaaaaa;
+            }
+            i{
+                font: 20px;
+                color: black;
+            }
+        }
+    }
+
+    .show-detail{
+        position: relative;
+        transition: 0.2s linear;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        height: 50px;
+        align-items: center;
+        font-family: 'Mali', cursive;
+        font-size: 20px;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        .choose-class-number{
+            span{
+                color: red;
+            }
+        }
+        .bt-add-all-class{
+            box-sizing: border-box;
+            padding: 5px;
+            background-color: rgb(41, 234, 41);
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px #aaaaaa;
+            cursor: pointer;
+        }
+    }
+
+    .hide-detail{
+        border-width: 0px;
+        height: 0;
+        font-size: 0;
+        .bt-add-all-class{padding: 0;}
     }
 
     .table-data{

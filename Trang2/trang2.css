@@ -255,8 +255,11 @@
   display: none;
 }
 .choose-class .key-search {
+  position: relative;
   border: 1px solid black;
   border-bottom: none;
+  height: 50px;
+  align-items: center;
   padding: 10px;
   font-family: "Mali", cursive;
   font-size: 20px;
@@ -318,6 +321,63 @@
   text-align: center;
   cursor: pointer;
   box-shadow: 3px 3px 5px #aaaaaa;
+}
+.choose-class .key-search div.button-show-detail {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  right: 0;
+  bottom: 0;
+  line-height: 30px;
+  text-align: center;
+  transition: 0.1s linear;
+}
+.choose-class .key-search div.button-show-detail-rotate {
+  transform: rotate(180deg);
+}
+.choose-class .key-search div.button-show-detail:hover {
+  background-color: #aaaaaa;
+}
+.choose-class .key-search div.button-show-detail i {
+  font: 20px;
+  color: black;
+}
+.choose-class .show-detail {
+  position: relative;
+  transition: 0.2s linear;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  height: 50px;
+  align-items: center;
+  font-family: "Mali", cursive;
+  font-size: 20px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.choose-class .show-detail .choose-class-number span {
+  color: red;
+}
+.choose-class .show-detail .bt-add-all-class {
+  box-sizing: border-box;
+  padding: 5px;
+  background-color: rgb(41, 234, 41);
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px #aaaaaa;
+  cursor: pointer;
+}
+.choose-class .hide-detail {
+  border-width: 0px;
+  height: 0;
+  font-size: 0;
+}
+.choose-class .hide-detail .bt-add-all-class {
+  padding: 0;
 }
 .choose-class .table-data {
   width: 100%;

@@ -262,6 +262,7 @@ function filtertablemain(){
   document.getElementById('table-data').innerHTML=jsontotable(filterdata)
   document.getElementsByClassName('main-content')[0].setAttribute('style','align-items: unset;')
   seteventformaintable(document.querySelector('.table-data table'))
+  numrow.innerHTML=filterdata.length
 }
 
 function addTablechoosed(){
@@ -325,7 +326,8 @@ btsearchtext.onclick = function(){
     tablesearch +='</tbody>'
     var tablenew=document.querySelector('#table-data table tbody')
     tablenew.innerHTML = tablesearch
-    seteventformaintable(tablenew)
+    seteventformaintable(document.querySelector('#table-data table'))
+    numrow.innerHTML = searchclass.length
   }
 
 }
@@ -334,5 +336,22 @@ textsearch.onkeyup = function(event){
   if (event.keyCode == 13){
     btsearchtext.click()
   }
+}
+// ------------------------------------------------------------------
+                    // detail
+// ------------------------------------------------------------------
+const numrow = document.querySelector('.choose-class-number span')
+const buttonshowdetail = document.querySelector('div.button-show-detail')
+buttonshowdetail.onclick = function(){
+  document.getElementsByClassName('show-detail')[0].classList.toggle('hide-detail')
+  document.querySelector('div.button-show-detail').classList.toggle('button-show-detail-rotate')
+}
+
+const buttonaddall = document.getElementsByClassName('bt-add-all-class')[0]
+buttonaddall.onclick = function(){
+  var addall = searchclass.map(element=>{
+    return element.STT
+  })
+  selectedclass.push(...addall)
 }
 
