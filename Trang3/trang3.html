@@ -7,15 +7,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="trang3.css">
     <title>Xếp thời khóa biểu</title>
-    <script src="js.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
-
 <body>
-    <div class="button-menu">
+    <div class="button-menu" id="button-menu">
         <i class="fa-solid fa-bars"></i>
     </div>
-    <div class="nav-choose">
+    <div class="nav-choose menu-hide" id="nav-choose">
         <div class="nav-choose-title">MENU</div>
         <ul>
             <li><a href="../Trang1/trang1.html">Nhập nguồn</a></li>
@@ -24,9 +22,52 @@
             <li><a href="../Trang4/trang4.html">Thời khóa biểu</a></li>
         </ul>
     </div>
-    <div class="main-content">
-        this is content3
+    <div class="main-content content-show" id="main-content">
+        <div class="first-container">
+            <div class="step-0-pre"></div>
+            <div class="step-0-next"></div>
+            <div class="step-1">
+                <div class="step-1-title">
+                    <div>Bước 1</div>
+                    <div>Nhập file các lớp</div>
+                </div>
+                <div class="step-1-content">
+                    <label for="file-json">Chọn file các lớp vừa chọn</label>
+                    <input type="file" accept=".json" id="file-json">
+                </div>
+                <div class="step-1-pre" style="display: none;">Trở về</div>
+                <div class="step-1-next">Tiếp</div>
+            </div>
+            <div class="step-2">
+                <div class="step-2-title">
+                    <div>Bước 2</div>
+                    <div>Điền thông tin cột</div>
+                </div>
+                <div class="step-2-content"></div>
+                <div class="step-2-pre">Trở về</div>
+                <div class="step-2-next">Tiếp</div>
+            </div>
+            <div class="step-3">
+                <div class="step-3-title">
+                    <div>Bước 3</div>
+                    <div>Điền thông tin cột</div>
+                </div>
+                <div class="step-3-content"></div>
+                <div class="step-3-pre">Trở về</div>
+                <div class="step-3-next">Tiếp</div>
+            </div>
+            <div class="step-4">
+                <div class="step-4-title">
+                    <div>Bước 4</div>
+                    <div>Điền thông tin cột</div>
+                </div>
+                <div class="step-4-content"></div>
+                <div class="step-4-pre">Trở về</div>
+                <div class="step-4-next">Tiếp</div>
+            </div>
+        </div>
     </div>
 </body>
-
+<script src="../nav.js"></script>
+<script src="js3.js"></script>
 </html>

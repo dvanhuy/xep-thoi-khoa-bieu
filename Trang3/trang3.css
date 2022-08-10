@@ -1,98 +1,109 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-.button-menu {
-  cursor: pointer;
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  top: 10px;
-  left: 10px;
+@charset "UTF-8";
+@import '../nav.css';
+@import url("https://fonts.googleapis.com/css2?family=Mali&display=swap");
+.main-content {
+  position: absolute;
+  left: 250px;
+  top: 0px;
+  background-color: white;
+  height: 100vh;
+  width: calc(100% - 250px);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
-  z-index: 100;
+}
+
+.first-container {
+  width: 400px;
+  height: 400px;
+  position: relative;
   border: 1px solid black;
-  border-radius: 30%;
 }
-.button-menu:hover {
-  background-color: black;
-}
-.button-menu:hover i {
-  color: white;
-}
-.button-menu i {
-  font-size: 30px;
-}
-
-.nav-choose {
-  position: fixed;
-  width: 250px;
-  height: 100vh;
-  background-color: lightgreen;
-  opacity: 1;
-  transition: 0.2s linear;
-}
-.nav-choose-title {
-  font-size: 30px;
+.first-container > div {
   width: 100%;
-  height: 70px;
+  height: 100%;
+  position: absolute;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+}
+.first-container > div > div:first-child {
+  position: absolute;
+  color: red;
+  font-size: 2rem;
   text-align: center;
-  line-height: 70px;
-  font-family: "Anton", sans-serif;
-}
-.nav-choose ul {
-  list-style: none;
-}
-.nav-choose ul a {
-  font-size: 25px;
-  color: white;
-  font-weight: bold;
   width: 100%;
-  height: 70px;
-  text-decoration: none;
-  font-family: "Josefin Sans", sans-serif;
-  display: block;
-  text-align: center;
-  line-height: 70px;
+  height: 100px;
+  line-height: 50px;
 }
-.nav-choose ul a:hover {
-  background-color: rgb(170, 247, 170);
+.first-container > div > div:first-child > div:first-child {
+  width: 100%;
+  background-color: rgb(64, 64, 255);
+  color: white;
+  height: 50px;
 }
-
-.menu-hide {
-  width: 0 !important;
-  opacity: 0 !important;
-}
-
-.main-content {
+.first-container > div > div:nth-child(2) {
+  width: 100%;
   position: absolute;
-  left: 250px;
-  top: 0px;
-  min-height: 100vh;
-  width: calc(100% - 250px);
-  transition: 0.2s linear;
-}
-
-.content-show {
-  width: 100% !important;
-  left: 0 !important;
-}
-
-.main-content {
-  position: absolute;
-  left: 250px;
-  top: 0px;
-  background-color: whitesmoke;
-  height: 100vh;
-  width: calc(100% - 250px);
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  font-size: 50px;
+  bottom: 0;
+  height: calc(100% - 50px);
+}
+.first-container > div > div:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  background-color: royalblue;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.first-container > div > div:last-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  background-color: royalblue;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.first-container .step-1-content input[type=file] {
+  margin: 5px 0 0 30px;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+}
+.first-container .step-1-content input[type=file]::before {
+  content: "Chọn tệp";
+  position: absolute;
+  margin: -2px 0 0 0;
+  background-color: white;
+  border: 1px solid black;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+.first-container .step-0-pre, .first-container .step-0-next {
+  z-index: 10;
+  background-color: white;
+}
+.first-container .step-0-pre {
+  transform: translateX(-100%);
+}
+.first-container .step-0-next {
+  transform: translateX(100%);
+}
+.first-container .step-1-hide {
+  transform: translateX(-100%);
+}
+.first-container .step-2, .first-container .step-3, .first-container .step-4 {
+  transform: translateX(100%);
+}
+.first-container .step-2-show, .first-container .step-3-show, .first-container .step-4-show {
+  transform: translateX(0%);
+}
+.first-container .step-2-hide, .first-container .step-3-hide {
+  transform: translateX(-100%);
 }/*# sourceMappingURL=trang3.css.map */
