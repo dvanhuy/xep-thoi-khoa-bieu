@@ -18,6 +18,7 @@
   height: 400px;
   position: relative;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 .first-container > div {
   width: 100%;
@@ -25,6 +26,7 @@
   position: absolute;
   font-family: "Mali", cursive;
   font-size: 1.2rem;
+  box-sizing: border-box;
 }
 .first-container > div > div:first-child {
   position: absolute;
@@ -41,7 +43,7 @@
   color: white;
   height: 50px;
 }
-.first-container > div > div:nth-child(2) {
+.first-container > div > div:nth-child(2):not(.step-3-content) {
   width: 100%;
   position: absolute;
   display: flex;
@@ -50,6 +52,8 @@
   align-items: center;
   bottom: 0;
   height: calc(100% - 50px);
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
 }
 .first-container > div > div:nth-child(3) {
   position: absolute;
@@ -71,6 +75,30 @@
   padding: 10px 20px;
   cursor: pointer;
 }
+.first-container .step-0-pre, .first-container .step-0-next {
+  z-index: 10;
+  background-color: white;
+}
+.first-container .step-0-pre {
+  transform: translateX(-100%);
+  border-right: 1px solid black;
+}
+.first-container .step-0-next {
+  transform: translateX(100%);
+  border-left: 1px solid black;
+}
+.first-container .step-1-hide {
+  transform: translateX(-100%);
+}
+.first-container .step-2, .first-container .step-3, .first-container .step-4 {
+  transform: translateX(100%);
+}
+.first-container .step-2-show, .first-container .step-3-show, .first-container .step-4-show {
+  transform: translateX(0%);
+}
+.first-container .step-2-hide, .first-container .step-3-hide {
+  transform: translateX(-100%);
+}
 .first-container .step-1-content input[type=file] {
   margin: 5px 0 0 30px;
   font-family: "Mali", cursive;
@@ -85,25 +113,32 @@
   padding: 2px 4px;
   cursor: pointer;
 }
-.first-container .step-0-pre, .first-container .step-0-next {
-  z-index: 10;
-  background-color: white;
+.first-container .step-2-content select {
+  margin-top: 10px;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
 }
-.first-container .step-0-pre {
-  transform: translateX(-100%);
+.first-container .step-3-content {
+  display: grid;
+  width: 100%;
+  position: absolute;
+  bottom: 70px;
+  text-align: center;
+  height: calc(100% - 180px);
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  row-gap: 10px;
+  justify-content: center;
+  grid-template-columns: 160px 180px;
+  grid-template-rows: repeat(3, 1fr);
 }
-.first-container .step-0-next {
-  transform: translateX(100%);
+.first-container .step-3-content label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.first-container .step-1-hide {
-  transform: translateX(-100%);
-}
-.first-container .step-2, .first-container .step-3, .first-container .step-4 {
-  transform: translateX(100%);
-}
-.first-container .step-2-show, .first-container .step-3-show, .first-container .step-4-show {
-  transform: translateX(0%);
-}
-.first-container .step-2-hide, .first-container .step-3-hide {
-  transform: translateX(-100%);
+.first-container .step-3-content select {
+  text-align: center;
+  font-family: "Mali", cursive;
+  font-size: 1rem;
 }/*# sourceMappingURL=trang3.css.map */
