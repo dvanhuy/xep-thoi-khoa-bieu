@@ -14,6 +14,9 @@
 }
 
 .first-container{
+    &-hide{
+        display: none;
+    }
     width: 400px;
     height: 400px;
     position: relative;
@@ -149,5 +152,39 @@
             font-family: "Mali", cursive;
             font-size: 1rem;
         }
+    }
+}
+
+.second-container{
+    &-hide{
+        display: none;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .table-grid{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 0.8fr repeat(6,1fr);
+        grid-template-rows: 1.3fr repeat(12,1fr);
+        .column-header,.row-header{
+            color: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .table-grid-data{
+            grid-column: 2 / 8;
+            grid-row: 2 / 14;
+        }
+    }
+    .list-key-class div{
+        height: 50px;
+        width: 100px;
+        border: 1px solid black;
+        background-color: lightblue;
     }
 }

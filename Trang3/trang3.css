@@ -20,6 +20,9 @@
   border: 1px solid black;
   box-sizing: border-box;
 }
+.first-container-hide {
+  display: none;
+}
 .first-container > div {
   width: 100%;
   height: 100%;
@@ -141,4 +144,38 @@
   text-align: center;
   font-family: "Mali", cursive;
   font-size: 1rem;
+}
+
+.second-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.second-container-hide {
+  display: none;
+}
+.second-container .table-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr repeat(6, 1fr);
+  grid-template-rows: 1.3fr repeat(12, 1fr);
+}
+.second-container .table-grid .column-header, .second-container .table-grid .row-header {
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.second-container .table-grid .table-grid-data {
+  grid-column: 2/8;
+  grid-row: 2/14;
+}
+.second-container .list-key-class div {
+  height: 50px;
+  width: 100px;
+  border: 1px solid black;
+  background-color: lightblue;
 }/*# sourceMappingURL=trang3.css.map */

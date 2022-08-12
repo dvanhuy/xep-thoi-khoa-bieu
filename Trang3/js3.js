@@ -24,7 +24,6 @@ btnextstep2.onclick = function(){
     contentstep2.classList.add('step-2-hide')
     contentstep3.classList.add('step-3-show')
     keyclass = document.getElementById('step-2-content-select').value
-    console.log(keyclass);
     addoptiontoselect(document.getElementById('step-3-content-day'))
     addoptiontoselect(document.getElementById('step-3-content-start'))
     addoptiontoselect(document.getElementById('step-3-content-end'))
@@ -32,9 +31,42 @@ btnextstep2.onclick = function(){
 btnextstep3.onclick = function(){
     contentstep3.classList.add('step-3-hide')
     contentstep4.classList.add('step-4-show')
+
+    dayclass = document.getElementById('step-3-content-day').value
+    lessonstart = document.getElementById('step-3-content-start').value
+    lessonend = document.getElementById('step-3-content-end').value
+
 }
 btnextstep4.onclick = function(){
-    contentstep4.classList.add('step-4-hide')
+
+    document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
+    document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
+    const classkeyct = document.getElementsByClassName('list-key-class')[0]
+
+    var filterstep1 = filejsonclass.map(ev=> ev[keyclass])
+    var filterstep2 = filterstep1.filter((ev,poi)=> filterstep1.indexOf(ev) == poi)
+    console.log(filterstep2);
+    for (let index = 0; index < filterstep2.length; index++) {
+        const element = filterstep2[index];
+        let string = '<div  draggable="true" id=cls'+index+'>'+ element +'</div>'
+        classkeyct.innerHTML += string
+    }
+
+    classkeyct.ondragover = function(event){
+        event.preventDefault();
+    }
+    classkeyct.ondragstart = function(event){
+        event.dataTransfer.setData("dataid", event.target.id);
+        event.target.style.opacity = '0.5'
+    }
+
+    classkeyct.ondrop = function(event) {
+        event.preventDefault();
+        const temp = document.getElementById(event.dataTransfer.getData("dataid"))
+        temp.outerHTML = ''
+        temp.style.removeProperty('opacity')
+        event.target.outerHTML += temp.outerHTML
+    }
 }
 btprestep2.onclick = function(){
     contentstep1.classList.remove('step-1-hide')
@@ -53,6 +85,7 @@ let filejsonclass,keyclass,dayclass,lessonstart,lessonend
 const fileupload = document.getElementById('file-json')
 
 fileupload.addEventListener('change',ev=>{
+    console.time('File')
     const fileclass= ev.target.files[0]
     if (fileclass) {
         var reader = new FileReader();
@@ -61,9 +94,7 @@ fileupload.addEventListener('change',ev=>{
             filejsonclass = JSON.parse(event.target.result);
         };
     }
-    setTimeout(() => {
-        console.log(filejsonclass);
-    }, 10);
+    console.timeEnd('File')
 })
 
 function addoptiontoselect(elementselect){
@@ -75,3 +106,5 @@ function addoptiontoselect(elementselect){
     }
     elementselect.innerHTML += keyoption
 }
+
+
