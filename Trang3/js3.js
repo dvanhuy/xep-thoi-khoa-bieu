@@ -42,10 +42,10 @@ btnextstep4.onclick = function(){
     document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
     document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
     const classkeyct = document.getElementsByClassName('list-key-class')[0]
+    
 
     var filterstep1 = filejsonclass.map(ev=> ev[keyclass])
     var filterstep2 = filterstep1.filter((ev,poi)=> filterstep1.indexOf(ev) == poi)
-    console.log(filterstep2);
     for (let index = 0; index < filterstep2.length; index++) {
         const element = filterstep2[index];
         let string = '<div  draggable="true" id=cls'+index+'>'+ element +'</div>'
@@ -63,10 +63,16 @@ btnextstep4.onclick = function(){
     classkeyct.ondrop = function(event) {
         event.preventDefault();
         const temp = document.getElementById(event.dataTransfer.getData("dataid"))
-        temp.outerHTML = ''
-        temp.style.removeProperty('opacity')
-        event.target.outerHTML += temp.outerHTML
+        if (temp) {
+            temp.outerHTML = ''
+            temp.style.opacity = '1'
+            event.target.outerHTML += temp.outerHTML
+        }
+        else{
+            console.log('Chưa chọn');
+        }
     }
+
 }
 btprestep2.onclick = function(){
     contentstep1.classList.remove('step-1-hide')
@@ -106,5 +112,23 @@ function addoptiontoselect(elementselect){
     }
     elementselect.innerHTML += keyoption
 }
-
-
+var listkeyclass = document.getElementsByClassName('container-list-key')[0]
+var tabledtgrid = document.getElementsByClassName('table-grid')[0]
+var resizer = document.getElementsByClassName('set-size')[0]
+//box function onmousemove
+resizer.addEventListener('mousedown', initResize, false);
+//Window funtion mousemove & mouseup
+function initResize(e) {
+    window.addEventListener('mousemove', Resize, false);
+    window.addEventListener('mouseup', stopResize, false);
+}
+//resize the element
+function Resize(e) {
+    listkeyclass.style.width =(window.innerWidth - e.clientX-10) + 'px';
+    tabledtgrid.style.width = (e.clientX +10 )+ 'px';
+}
+//on mouseup remove windows functions mousemove & mouseup
+function stopResize(e) {
+    window.removeEventListener('mousemove', Resize, false);
+    window.removeEventListener('mouseup', stopResize, false);
+}
