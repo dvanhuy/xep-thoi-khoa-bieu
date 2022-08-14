@@ -19,6 +19,7 @@
   position: relative;
   border: 1px solid black;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .first-container-hide {
   display: none;
@@ -84,11 +85,9 @@
 }
 .first-container .step-0-pre {
   transform: translateX(-100%);
-  border-right: 1px solid black;
 }
 .first-container .step-0-next {
   transform: translateX(100%);
-  border-left: 1px solid black;
 }
 .first-container .step-1-hide {
   transform: translateX(-100%);
@@ -156,6 +155,7 @@
   display: none;
 }
 .second-container .table-grid {
+  overflow: hidden;
   position: absolute;
   width: 60%;
   height: 100%;
@@ -168,10 +168,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  background-color: rgb(223, 223, 223);
+}
+.second-container .table-grid .column-header {
+  border-left: 1px solid black;
+}
+.second-container .table-grid .row-header {
+  border-top: 1px solid black;
 }
 .second-container .table-grid .table-grid-data {
   grid-column: 2/8;
   grid-row: 2/14;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-right: 0px;
 }
 .second-container .container-list-key {
   position: absolute;
@@ -192,27 +204,66 @@
   z-index: 10;
 }
 .second-container .container-list-key .list-key-class {
-  position: absolute;
-  right: 0;
-  width: calc(100% - 20px);
+  position: relative;
+  left: 20px;
+  width: calc(52% - 20px);
   text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.second-container .container-list-key .list-key-class div:not(:first-child) {
+.second-container .container-list-key .daytime {
+  position: absolute;
+  width: 8%;
+  height: 100%;
+  top: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.second-container .container-list-key .daytime div:not(:first-child), .second-container .container-list-key .list-key-class div:not(:first-child) {
   position: relative;
   box-sizing: border-box;
   height: 50px;
   width: 100%;
   border: 1px solid black;
   background-color: lightblue;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  overflow: hidden;
 }
-.second-container .container-list-key .list-key-class div:first-child {
+.second-container .container-list-key .daytime div:first-child, .second-container .container-list-key .list-key-class div:first-child {
   position: relative;
   box-sizing: border-box;
   height: 40px;
   width: 100%;
+  line-height: 40px;
   border-bottom: 1px solid black;
   background-color: transparent;
+  font-family: "Mali", cursive;
+  font-size: 1.2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+}
+.second-container .container-list-key #cotthu2 {
+  left: 52.1%;
+}
+.second-container .container-list-key #cotthu3 {
+  left: 60%;
+}
+.second-container .container-list-key #cotthu4 {
+  left: 68%;
+}
+.second-container .container-list-key #cotthu5 {
+  left: 76%;
+}
+.second-container .container-list-key #cotthu6 {
+  left: 84%;
+}
+.second-container .container-list-key #cotthu7 {
+  left: 92%;
 }/*# sourceMappingURL=trang3.css.map */

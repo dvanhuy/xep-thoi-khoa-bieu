@@ -37,6 +37,7 @@ btnextstep3.onclick = function(){
     lessonend = document.getElementById('step-3-content-end').value
 
 }
+let dataTransferid
 btnextstep4.onclick = function(){
 
     document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
@@ -48,7 +49,7 @@ btnextstep4.onclick = function(){
     var filterstep2 = filterstep1.filter((ev,poi)=> filterstep1.indexOf(ev) == poi)
     for (let index = 0; index < filterstep2.length; index++) {
         const element = filterstep2[index];
-        let string = '<div  draggable="true" id=cls'+index+'>'+ element +'</div>'
+        let string = '<div draggable="true" id=cls'+index+'>'+ element +'</div>'
         classkeyct.innerHTML += string
     }
 
@@ -56,14 +57,14 @@ btnextstep4.onclick = function(){
         event.preventDefault();
     }
     classkeyct.ondragstart = function(event){
-        event.dataTransfer.setData("dataid", event.target.id);
         event.target.style.opacity = '0.5'
+        dataTransferid = event.target.id
     }
 
     classkeyct.ondrop = function(event) {
         event.preventDefault();
-        const temp = document.getElementById(event.dataTransfer.getData("dataid"))
-        if (temp) {
+        const temp = document.getElementById(dataTransferid)
+        if (temp && event.target.id != dataTransferid) {
             temp.outerHTML = ''
             temp.style.opacity = '1'
             event.target.outerHTML += temp.outerHTML
@@ -71,6 +72,14 @@ btnextstep4.onclick = function(){
         else{
             console.log('Chưa chọn');
         }
+    }
+
+    const tabledatamain = document.getElementsByClassName('table-grid-data')[0]
+    tabledatamain.ondragover = function(event){
+        event.preventDefault();
+    }
+    tabledatamain.ondrop = function(ev){
+        console.log(dataTransferid);
     }
 
 }
@@ -124,11 +133,12 @@ function initResize(e) {
 }
 //resize the element
 function Resize(e) {
-    listkeyclass.style.width =(window.innerWidth - e.clientX-10) + 'px';
-    tabledtgrid.style.width = (e.clientX +10 )+ 'px';
+    listkeyclass.style.width =(window.innerWidth - e.clientX +5) + 'px';
+    tabledtgrid.style.width = (e.clientX -5)+ 'px';
 }
 //on mouseup remove windows functions mousemove & mouseup
 function stopResize(e) {
     window.removeEventListener('mousemove', Resize, false);
     window.removeEventListener('mouseup', stopResize, false);
 }
+
