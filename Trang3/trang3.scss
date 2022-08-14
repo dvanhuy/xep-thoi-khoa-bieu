@@ -161,7 +161,7 @@
         display: none;
     }
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     .table-grid{
         overflow: hidden;
         position: absolute;
@@ -219,7 +219,6 @@
         .daytime{
             position: absolute;
             width: 8%;
-            height: 100%;
             top: 0;
             text-align: center;
             display: flex;
@@ -233,11 +232,15 @@
                 box-sizing: border-box;
                 height: 50px;
                 width: 100%;
-                border: 1px solid black;
+                border-left: 1px solid black;
+                border-bottom: 1px solid black;
                 background-color: lightblue;
                 font-family: "Mali", cursive;
                 font-size: 1.2rem;
                 overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             div:first-child{
                 position: relative;
@@ -253,7 +256,7 @@
                 overflow: hidden;
             }
         }
-        #cotthu2{left: 52.1%;}
+        #cotthu2{left: 52%;width: calc(8% + 1px);}
         #cotthu3{left: 60%;}
         #cotthu4{left: 68%;}
         #cotthu5{left: 76%;}

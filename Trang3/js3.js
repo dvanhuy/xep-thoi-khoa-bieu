@@ -44,13 +44,23 @@ btnextstep4.onclick = function(){
     document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
     const classkeyct = document.getElementsByClassName('list-key-class')[0]
     
-
     var filterstep1 = filejsonclass.map(ev=> ev[keyclass])
     var filterstep2 = filterstep1.filter((ev,poi)=> filterstep1.indexOf(ev) == poi)
     for (let index = 0; index < filterstep2.length; index++) {
         const element = filterstep2[index];
         let string = '<div draggable="true" id=cls'+index+'>'+ element +'</div>'
         classkeyct.innerHTML += string
+        for (let index = 2; index < 8; index++) {
+            const string = 'cotthu' + index
+            let elem = document.getElementById(string)
+            elem.innerHTML += '<div></div>'
+        }
+        // add thứ ngày
+        var timelearn = keytotime(filejsonclass,element,keyclass)
+        console.log(timelearn);
+        timelearn.forEach(currentItem => {
+            additemtolistday(currentItem)
+        });
     }
 
     classkeyct.ondragover = function(event){
@@ -70,7 +80,8 @@ btnextstep4.onclick = function(){
             event.target.outerHTML += temp.outerHTML
         }
         else{
-            console.log('Chưa chọn');
+            temp.style.opacity = '1'
+            console.log('bug drop');
         }
     }
 
@@ -142,3 +153,23 @@ function stopResize(e) {
     window.removeEventListener('mouseup', stopResize, false);
 }
 
+function keytotime(listclass,keysearch,columnkey){
+    var result = listclass.filter((ev)=>{
+        return ev[columnkey] == keysearch
+    })
+    return result
+}
+
+function additemtolistday(datatime){
+    var daystring = 'cotthu' + datatime[dayclass]
+    console.log(daystring);
+    const ngay= document.getElementById(daystring)
+    if (ngay.innerHTML == '')
+    {
+        ngay.innerHTML += '<div>'+datatime[lessonstart]+'-'+datatime[lessonend]+'</div>'
+    }
+    else
+    {
+        ngay.innerHTML += ' '+datatime[lessonstart]+'-'+datatime[lessonend]
+    }
+}
