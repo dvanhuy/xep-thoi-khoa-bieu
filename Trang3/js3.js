@@ -32,9 +32,14 @@ btnextstep3.onclick = function(){
     contentstep3.classList.add('step-3-hide')
     contentstep4.classList.add('step-4-show')
 
-    dayclass = document.getElementById('step-3-content-day').value
-    lessonstart = document.getElementById('step-3-content-start').value
-    lessonend = document.getElementById('step-3-content-end').value
+    if (document.getElementById('step-3-content-day').value)
+    {dayclass = document.getElementById('step-3-content-day').value}
+
+    if (document.getElementById('step-3-content-start').value)
+    {lessonstart = document.getElementById('step-3-content-start').value}
+
+    if (document.getElementById('step-3-content-end').value)
+    {lessonend = document.getElementById('step-3-content-end').value}
 
 }
 let dataTransferid
@@ -50,16 +55,24 @@ btnextstep4.onclick = function(){
         const element = filterstep2[index];
         let string = '<div draggable="true" id=cls'+index+'>'+ element +'</div>'
         classkeyct.innerHTML += string
-        for (let index = 2; index < 8; index++) {
-            const string = 'cotthu' + index
+        for (let i = 2; i < 8; i++) {
+            const string = 'cotthu' + i
             let elem = document.getElementById(string)
-            elem.innerHTML += '<div></div>'
+            elem.innerHTML += '<div class="timecls'+index+'"></div>'
         }
         // add thứ ngày
         var timelearn = keytotime(filejsonclass,element,keyclass)
-        console.log(timelearn);
         timelearn.forEach(currentItem => {
-            additemtolistday(currentItem)
+            var daystring = '#cotthu' + currentItem[dayclass]+' .timecls'+index
+            const ngay= document.querySelector(daystring)
+            if (ngay.innerHTML == '')
+            {
+                ngay.innerHTML +=currentItem[lessonstart]+'-'+currentItem[lessonend]
+            }
+            else
+            {
+                ngay.innerHTML += ' '+currentItem[lessonstart]+'-'+currentItem[lessonend]
+            }
         });
     }
 
@@ -69,6 +82,11 @@ btnextstep4.onclick = function(){
     classkeyct.ondragstart = function(event){
         event.target.style.opacity = '0.5'
         dataTransferid = event.target.id
+        for (let id = 2; id < 8; id++) {
+            let stringdata = '#cotthu'+id+' .time'+dataTransferid
+            timetemp = document.querySelector(stringdata)
+            timetemp.style.opacity = '0.5'
+        }
     }
 
     classkeyct.ondrop = function(event) {
@@ -76,12 +94,24 @@ btnextstep4.onclick = function(){
         const temp = document.getElementById(dataTransferid)
         if (temp && event.target.id != dataTransferid) {
             temp.outerHTML = ''
-            temp.style.opacity = '1'
+            temp.style.removeProperty('opacity')
             event.target.outerHTML += temp.outerHTML
+            for (let id = 2; id < 8; id++) {
+                let stringdata = '#cotthu'+id+' .time'+dataTransferid
+                timetemp = document.querySelector(stringdata)
+                timetemp.outerHTML = ''
+                timetemp.style.removeProperty('opacity')
+                document.querySelector('#cotthu'+id+' .time'+event.target.id).outerHTML +=timetemp.outerHTML
+            }
         }
         else{
-            temp.style.opacity = '1'
+            temp.style.removeProperty('opacity')
             console.log('bug drop');
+            for (let id = 2; id < 8; id++) {
+                let stringdata = '#cotthu'+id+' .time'+dataTransferid
+                timetemp = document.querySelector(stringdata)
+                timetemp.style.removeProperty('opacity')
+            }
         }
     }
 
@@ -106,7 +136,7 @@ btprestep4.onclick = function(){
     contentstep3.classList.remove('step-3-hide')
     contentstep4.classList.remove('step-4-show')
 }
-let filejsonclass,keyclass,dayclass,lessonstart,lessonend
+let filejsonclass,keyclass,dayclass='THUHOC',lessonstart='TIETBD',lessonend='TIETKT'
 
 const fileupload = document.getElementById('file-json')
 
@@ -143,8 +173,11 @@ function initResize(e) {
     window.addEventListener('mouseup', stopResize, false);
 }
 //resize the element
+// dùng document.documentElement.offsetWidth để tính sự thay đôi
+//dùng containor(có 100%width).clientWidth để không tính cả thanh cuộn vào
+//dùng window.innerWidth thì lúc có thanh cuộn listkeyclass sẽ bị đẩy qua khoảng 1 thanh cuộn 
 function Resize(e) {
-    listkeyclass.style.width =(window.innerWidth - e.clientX +5) + 'px';
+    listkeyclass.style.width =(document.querySelector('.second-container').clientWidth - e.clientX +5) + 'px';
     tabledtgrid.style.width = (e.clientX -5)+ 'px';
 }
 //on mouseup remove windows functions mousemove & mouseup
@@ -159,17 +192,6 @@ function keytotime(listclass,keysearch,columnkey){
     })
     return result
 }
-
-function additemtolistday(datatime){
-    var daystring = 'cotthu' + datatime[dayclass]
-    console.log(daystring);
-    const ngay= document.getElementById(daystring)
-    if (ngay.innerHTML == '')
-    {
-        ngay.innerHTML += '<div>'+datatime[lessonstart]+'-'+datatime[lessonend]+'</div>'
-    }
-    else
-    {
-        ngay.innerHTML += ' '+datatime[lessonstart]+'-'+datatime[lessonend]
-    }
-}
+// window.addEventListener('resize',(ev)=>{
+//     listkeyclass.style.width -= (window.innerWidth - document.documentElement.offsetWidth)
+// })
