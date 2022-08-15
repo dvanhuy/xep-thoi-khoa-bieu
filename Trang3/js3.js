@@ -192,6 +192,6 @@ function keytotime(listclass,keysearch,columnkey){
     })
     return result
 }
-// window.addEventListener('resize',(ev)=>{
-//     listkeyclass.style.width -= (window.innerWidth - document.documentElement.offsetWidth)
-// })
+window.addEventListener('resize',(ev)=>{
+    listkeyclass.style.width = (document.querySelector('.second-container').clientWidth - tabledtgrid.clientWidth) + 'px'
+})
