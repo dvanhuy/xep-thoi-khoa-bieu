@@ -1,6 +1,26 @@
 @charset "UTF-8";
 @import '../nav.css';
 @import url("https://fonts.googleapis.com/css2?family=Mali&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
+.option-show {
+  margin-top: 30px;
+  font-family: "Fuzzy Bubbles", cursive;
+  font-size: 1.1rem;
+  text-align: center;
+  width: 100%;
+}
+.option-show input {
+  display: none;
+}
+.option-show label div {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+}
+.option-show label div:hover {
+  background-color: rgb(170, 247, 170);
+}
+
 .main-content {
   position: absolute;
   left: 250px;
@@ -144,7 +164,61 @@
   font-family: "Mali", cursive;
   font-size: 1rem;
 }
+.first-container .step-4-content img {
+  size: 50%;
+  height: 50%;
+}
+.first-container .step-4-content .progress-bar {
+  box-sizing: border-box;
+  margin-top: 10px;
+  position: relative;
+  width: 80%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.first-container .step-4-content .progress-bar div {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+  background-color: rgb(64, 64, 255);
+  -webkit-animation-name: progressbar;
+          animation-name: progressbar;
+  -webkit-animation-duration: 2.5s;
+          animation-duration: 2.5s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.first-container .step-4-next-notsl {
+  cursor: not-allowed !important;
+}
 
+@-webkit-keyframes progressbar {
+  95% {
+    width: 95%;
+    border-radius: 20px 0 0 20px;
+  }
+  100% {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
+
+@keyframes progressbar {
+  95% {
+    width: 95%;
+    border-radius: 20px 0 0 20px;
+  }
+  100% {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
 .second-container {
   position: relative;
   overflow-x: hidden;
@@ -251,6 +325,12 @@
       -ms-user-select: none;
           user-select: none;
   overflow: hidden;
+}
+.second-container .container-list-key .daytime .hadadd, .second-container .container-list-key .list-key-class .hadadd {
+  background-color: rgb(255, 60, 60) !important;
+}
+.second-container .container-list-key .daytime .hadadd-hide, .second-container .container-list-key .list-key-class .hadadd-hide {
+  display: none !important;
 }
 .second-container .container-list-key #cotthu2 {
   left: 52%;

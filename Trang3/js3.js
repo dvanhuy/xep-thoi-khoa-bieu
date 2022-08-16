@@ -68,13 +68,16 @@ btnextstep3.onclick = function(){
 
     if (input3.value)
     {lessonend = input3.value}
-    
-}
-let dataTransferid
-btnextstep4.onclick = function(){
+    var animationprobar = document.getElementById('progressbar')
+    animationprobar.classList.remove("progress-bar"); 
+    animationprobar.offsetWidth; 
+    animationprobar.classList.add("progress-bar")
 
-    document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
-    document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
+    animationprobar.addEventListener('animationend',()=>{
+        document.getElementsByClassName('step-4-next')[0].classList.remove('step-4-next-notsl')
+    })
+
+    //load data
     const classkeyct = document.getElementsByClassName('list-key-class')[0]
     
     var filterstep1 = filejsonclass.map(ev=> ev[keyclass])
@@ -148,9 +151,25 @@ btnextstep4.onclick = function(){
         event.preventDefault();
     }
     tabledatamain.ondrop = function(ev){
-        console.log(dataTransferid);
+        timerow = document.getElementsByClassName('time'+dataTransferid)
+        for (let index = 0; index < timerow.length; index++) {
+            const element = timerow[index];
+            element.classList.add('hadadd')
+            element.classList.add('hadadd-hide')
+            element.style.removeProperty('opacity')
+        }
+        document.getElementById(dataTransferid).classList.add('hadadd')
+        document.getElementById(dataTransferid).classList.add('hadadd-hide')
+        document.getElementById(dataTransferid).style.removeProperty('opacity')
     }
 
+    document.getElementsByClassName('step-4-next')[0].classList.add('step-4-next-notsl')
+
+}
+let dataTransferid
+btnextstep4.onclick = function(){
+    document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
+    document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
 }
 btprestep2.onclick = function(){
     contentstep1.classList.remove('step-1-hide')
@@ -163,6 +182,7 @@ btprestep3.onclick = function(){
 btprestep4.onclick = function(){
     contentstep3.classList.remove('step-3-hide')
     contentstep4.classList.remove('step-4-show')
+    
 }
 let filejsonclass,keyclass,dayclass='THUHOC',lessonstart='TIETBD',lessonend='TIETKT'
 
@@ -223,3 +243,21 @@ function keytotime(listclass,keysearch,columnkey){
 window.addEventListener('resize',(ev)=>{
     listkeyclass.style.width = (document.querySelector('.second-container').clientWidth - tabledtgrid.clientWidth) + 'px'
 })
+
+document.getElementById('showhadadd').onchange = ()=>{
+    const abc =  document.getElementsByClassName('hadadd')
+    if (document.getElementById('showhadadd').checked){
+        for (let index = 0; index < abc.length; index++) {
+            const element = abc[index];
+            element.classList.remove('hadadd-hide')
+        }
+        document.querySelector('label[for="showhadadd"] div').innerHTML = 'Ẩn học phần đã chọn'
+    }
+    else{
+        for (let index = 0; index < abc.length; index++) {
+            const element = abc[index];
+            element.classList.add('hadadd-hide')
+        }
+        document.querySelector('label[for="showhadadd"] div').innerHTML = 'Hiện học phần đã chọn'
+    }
+}
