@@ -10,6 +10,20 @@ const contentstep1 = document.getElementsByClassName('step-1')[0]
 const contentstep2 = document.getElementsByClassName('step-2')[0]
 const contentstep3 = document.getElementsByClassName('step-3')[0]
 const contentstep4 = document.getElementsByClassName('step-4')[0]
+// viet lai
+const nav = document.getElementById('nav-choose')
+const clickmenu = document.getElementById('button-menu')
+const contentshow = document.getElementById('main-content')
+clickmenu.onclick = function(){
+    nav.classList.toggle("menu-hide")
+    contentshow.classList.toggle("content-show")
+    if (!nav.classList.contains('menu-hide')){
+        tabledtgrid.style.width = (tabledtgrid.clientWidth - 250) + 'px'
+    }
+    else{
+        tabledtgrid.style.width = (tabledtgrid.clientWidth + 250) + 'px'
+    }
+}
 //chuyển 1 -> 2
 btnextstep1.onclick = function(){
     contentstep1.classList.add('step-1-hide')
@@ -28,19 +42,33 @@ btnextstep2.onclick = function(){
     addoptiontoselect(document.getElementById('step-3-content-start'))
     addoptiontoselect(document.getElementById('step-3-content-end'))
 }
+const input1 = document.getElementById('step-3-content-day')
+const input2 = document.getElementById('step-3-content-start')
+const input3 = document.getElementById('step-3-content-end')
+input1.onchange = ()=>{
+    let labelElement = document.querySelector('label[for="step-3-content-day"]');
+    labelElement.innerHTML = 'Thứ: <br>'+ input1.value
+}
+input2.onchange = ()=>{
+    let labelElement = document.querySelector('label[for="step-3-content-start"]');
+    labelElement.innerHTML = 'Tiết bắt đầu: <br>'+ input2.value
+}
+input3.onchange = ()=>{
+    let labelElement = document.querySelector('label[for="step-3-content-end"]');
+    labelElement.innerHTML = 'Tiết kết thúc: <br>'+ input3.value
+}
 btnextstep3.onclick = function(){
     contentstep3.classList.add('step-3-hide')
     contentstep4.classList.add('step-4-show')
+    if (input1.value)
+    {dayclass = input1.value}
 
-    if (document.getElementById('step-3-content-day').value)
-    {dayclass = document.getElementById('step-3-content-day').value}
+    if (input2.value)
+    {lessonstart = input2.value}
 
-    if (document.getElementById('step-3-content-start').value)
-    {lessonstart = document.getElementById('step-3-content-start').value}
-
-    if (document.getElementById('step-3-content-end').value)
-    {lessonend = document.getElementById('step-3-content-end').value}
-
+    if (input3.value)
+    {lessonend = input3.value}
+    
 }
 let dataTransferid
 btnextstep4.onclick = function(){
@@ -177,8 +205,8 @@ function initResize(e) {
 //dùng containor(có 100%width).clientWidth để không tính cả thanh cuộn vào
 //dùng window.innerWidth thì lúc có thanh cuộn listkeyclass sẽ bị đẩy qua khoảng 1 thanh cuộn 
 function Resize(e) {
-    listkeyclass.style.width =(document.querySelector('.second-container').clientWidth - e.clientX +5) + 'px';
-    tabledtgrid.style.width = (e.clientX -5)+ 'px';
+    listkeyclass.style.width =(document.querySelector('.second-container').clientWidth - e.clientX +5 + nav.clientWidth) + 'px';
+    tabledtgrid.style.width = (e.clientX -5 - nav.clientWidth)+ 'px';
 }
 //on mouseup remove windows functions mousemove & mouseup
 function stopResize(e) {
