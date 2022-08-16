@@ -196,6 +196,7 @@
 }
 .first-container .step-4-next-notsl {
   cursor: not-allowed !important;
+  opacity: 0.5;
 }
 
 @-webkit-keyframes progressbar {
