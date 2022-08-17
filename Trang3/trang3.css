@@ -13,11 +13,21 @@
   display: none;
 }
 .option-show label div {
+  cursor: pointer;
   width: 100%;
   height: 50px;
   line-height: 50px;
 }
 .option-show label div:hover {
+  background-color: rgb(170, 247, 170);
+}
+.option-show div.item-custom {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+}
+.option-show div.item-custom:hover {
   background-color: rgb(170, 247, 170);
 }
 

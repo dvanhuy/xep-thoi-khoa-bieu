@@ -153,29 +153,38 @@ btnextstep3.onclick = function(){
     }
     tabledatamain.ondrop = function(ev){
         ev.preventDefault()
-        timerow = document.getElementsByClassName('time'+dataTransferid)
-        for (let index = 0; index < timerow.length; index++) {
-            const element = timerow[index];
-            element.classList.add('hadadd')
-            element.classList.add('hadadd-hide')
-            element.style.removeProperty('opacity')
+        if (ev.target.classList.contains('hoverdiv')){
+            timerow = document.getElementsByClassName('time'+dataTransferid)
+            for (let index = 0; index < timerow.length; index++) {
+                const element = timerow[index];
+                element.classList.add('hadadd')
+                element.classList.add('hadadd-hide')
+                element.style.removeProperty('opacity')
+            }
+            document.getElementById(dataTransferid).classList.add('hadadd')
+            document.getElementById(dataTransferid).classList.add('hadadd-hide')
+            document.getElementById(dataTransferid).style.removeProperty('opacity')
         }
-        document.getElementById(dataTransferid).classList.add('hadadd')
-        document.getElementById(dataTransferid).classList.add('hadadd-hide')
-        document.getElementById(dataTransferid).style.removeProperty('opacity')
+        else {
+            timerow = document.getElementsByClassName('time'+dataTransferid)
+            for (let index = 0; index < timerow.length; index++) {
+                const element = timerow[index];
+                element.style.removeProperty('opacity')
+            }
+            document.getElementById(dataTransferid).style.removeProperty('opacity')
+        }
     }
     tabledatamain.ondragenter = function(ev){ // bug kích hoạt liên tục
         // ev.stopPropagation();//đéo có tác dụng
         ev.preventDefault();// đéo có tác dụng lun
         var time = keytotime(filejsonclass,document.getElementById(dataTransferid).innerHTML,keyclass)
-        let id= 1;
         time.forEach(element => {
-            const divele = createdivhover(element[dayclass],element[lessonstart],element[lessonend],id)
+            const divele = createdivhover(element[dayclass],element[lessonstart],element[lessonend],element.STT)
             document.getElementsByClassName('table-grid-data')[0].appendChild(divele)
-            id=id+1
         });
         hoverColumn = ev.target.style.gridColumn
         hoverRow = ev.target.style.gridRow
+        idchoose = ev.target.id
     }
 
     classkeyct.ondragend = function(ev){
@@ -186,8 +195,9 @@ btnextstep3.onclick = function(){
             var keyshow = document.createElement('div')
             keyshow.style.gridColumn = hoverColumn
             keyshow.style.gridRow = hoverRow
-            keyshow.style.backgroundColor = 'white'
-            keyshow.style.border = '1px solid black'
+            keyshow.style.width = '100%'
+            keyshow.style.height = '100%'
+            keyshow.style.backgroundColor = 'lightblue'
             keyshow.style.boxSizing = 'border-box'
             keyshow.style.display = 'flex'
             keyshow.style.textAlign = 'center'
@@ -196,6 +206,7 @@ btnextstep3.onclick = function(){
             keyshow.style.fontSize = '1.2rem'
             keyshow.style.overflow = 'hidden'
             keyshow.textContent = ev.target.innerHTML
+            keyshow.id = idchoose
             document.getElementsByClassName('table-grid-data')[0].appendChild(keyshow)
         }
     }
@@ -203,7 +214,7 @@ btnextstep3.onclick = function(){
     document.getElementsByClassName('step-4-next')[0].classList.add('step-4-next-notsl')
 
 }
-let dataTransferid,hoverColumn,hoverRow
+let dataTransferid,hoverColumn,hoverRow,idchoose
 btnextstep4.onclick = function(){
     document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
     document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
@@ -309,4 +320,21 @@ function createdivhover(day,lessonstart,lessonend,id){
     div.style.gridRow = lessonstart + ' / ' + (lessonend+1)
     div.id = id
     return div
+}
+
+document.getElementById('reset-data').onclick = ()=>{
+    document.getElementsByClassName('table-grid-data')[0].innerHTML = '';
+
+    document.querySelectorAll('.list-key-class div').forEach(element => {
+        element.classList.remove('hadadd')
+        element.classList.remove('hadadd-hide')
+    });
+
+    document.querySelectorAll('.daytime div').forEach(element => {
+        element.classList.remove('hadadd')
+        element.classList.remove('hadadd-hide')
+    });
+
+
+
 }
