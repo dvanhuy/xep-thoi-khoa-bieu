@@ -259,6 +259,11 @@
   box-sizing: border-box;
   border: 1px solid;
   border-right: 0px;
+  background-image: repeating-linear-gradient(black 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, black 0 1px, transparent 1px 100%);
+  background-size: 16.6666666667% 8.3333333333%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(12, 1fr);
 }
 .second-container .container-list-key {
   position: absolute;

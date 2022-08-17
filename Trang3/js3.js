@@ -146,11 +146,13 @@ btnextstep3.onclick = function(){
         }
     }
 
+
     const tabledatamain = document.getElementsByClassName('table-grid-data')[0]
     tabledatamain.ondragover = function(event){
         event.preventDefault();
     }
     tabledatamain.ondrop = function(ev){
+        ev.preventDefault()
         timerow = document.getElementsByClassName('time'+dataTransferid)
         for (let index = 0; index < timerow.length; index++) {
             const element = timerow[index];
@@ -162,11 +164,46 @@ btnextstep3.onclick = function(){
         document.getElementById(dataTransferid).classList.add('hadadd-hide')
         document.getElementById(dataTransferid).style.removeProperty('opacity')
     }
+    tabledatamain.ondragenter = function(ev){ // bug kích hoạt liên tục
+        // ev.stopPropagation();//đéo có tác dụng
+        ev.preventDefault();// đéo có tác dụng lun
+        var time = keytotime(filejsonclass,document.getElementById(dataTransferid).innerHTML,keyclass)
+        let id= 1;
+        time.forEach(element => {
+            const divele = createdivhover(element[dayclass],element[lessonstart],element[lessonend],id)
+            document.getElementsByClassName('table-grid-data')[0].appendChild(divele)
+            id=id+1
+        });
+        hoverColumn = ev.target.style.gridColumn
+        hoverRow = ev.target.style.gridRow
+    }
+
+    classkeyct.ondragend = function(ev){
+        document.querySelectorAll('.hoverdiv').forEach(element => {
+            element.parentNode.removeChild(element)
+        });
+        if (hoverColumn && hoverRow){
+            var keyshow = document.createElement('div')
+            keyshow.style.gridColumn = hoverColumn
+            keyshow.style.gridRow = hoverRow
+            keyshow.style.backgroundColor = 'white'
+            keyshow.style.border = '1px solid black'
+            keyshow.style.boxSizing = 'border-box'
+            keyshow.style.display = 'flex'
+            keyshow.style.textAlign = 'center'
+            keyshow.style.alignItems = 'center'
+            keyshow.style.fontFamily = '"Mali", cursive'
+            keyshow.style.fontSize = '1.2rem'
+            keyshow.style.overflow = 'hidden'
+            keyshow.textContent = ev.target.innerHTML
+            document.getElementsByClassName('table-grid-data')[0].appendChild(keyshow)
+        }
+    }
 
     document.getElementsByClassName('step-4-next')[0].classList.add('step-4-next-notsl')
 
 }
-let dataTransferid
+let dataTransferid,hoverColumn,hoverRow
 btnextstep4.onclick = function(){
     document.getElementsByClassName('first-container')[0].classList.add('first-container-hide')
     document.getElementsByClassName('second-container')[0].classList.remove('second-container-hide')
@@ -260,4 +297,16 @@ document.getElementById('showhadadd').onchange = ()=>{
         }
         document.querySelector('label[for="showhadadd"] div').innerHTML = 'Hiện học phần đã chọn'
     }
+}
+
+function createdivhover(day,lessonstart,lessonend,id){
+    let div = document.createElement('a')
+    div.draggable = 'true'
+    div.classList.add('hoverdiv')
+    div.style.border = '3px dashed blue'
+    div.style.borderRadius = '5px'
+    div.style.gridColumn = (day-1) + ' / ' + (day)
+    div.style.gridRow = lessonstart + ' / ' + (lessonend+1)
+    div.id = id
+    return div
 }
