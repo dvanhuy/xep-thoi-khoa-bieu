@@ -159,19 +159,9 @@ btnextstep3.onclick = function(){
                 const element = timerow[index];
                 element.classList.add('hadadd')
                 element.classList.add('hadadd-hide')
-                element.style.removeProperty('opacity')
             }
             document.getElementById(dataTransferid).classList.add('hadadd')
             document.getElementById(dataTransferid).classList.add('hadadd-hide')
-            document.getElementById(dataTransferid).style.removeProperty('opacity')
-        }
-        else {
-            timerow = document.getElementsByClassName('time'+dataTransferid)
-            for (let index = 0; index < timerow.length; index++) {
-                const element = timerow[index];
-                element.style.removeProperty('opacity')
-            }
-            document.getElementById(dataTransferid).style.removeProperty('opacity')
         }
     }
     tabledatamain.ondragenter = function(ev){ // bug kích hoạt liên tục
@@ -191,6 +181,12 @@ btnextstep3.onclick = function(){
         document.querySelectorAll('.hoverdiv').forEach(element => {
             element.parentNode.removeChild(element)
         });
+        document.getElementById(dataTransferid).style.removeProperty('opacity')
+        timerow = document.getElementsByClassName('time'+dataTransferid)
+        for (let index = 0; index < timerow.length; index++) {
+            const element = timerow[index];
+            element.style.removeProperty('opacity')
+        }
         if (hoverColumn && hoverRow){
             var keyshow = document.createElement('div')
             keyshow.style.gridColumn = hoverColumn
@@ -334,7 +330,24 @@ document.getElementById('reset-data').onclick = ()=>{
         element.classList.remove('hadadd')
         element.classList.remove('hadadd-hide')
     });
-
-
-
+}
+function savefile(filename, datastring){
+    var a = document.createElement("a");
+    var file = new Blob([datastring], { type: "text/plain" });
+    a.href = URL.createObjectURL(file);
+    a.download = filename;
+    a.click((ev)=>{
+        ev.preventDefault()
+    });
+  }
+document.getElementById('export-data').onclick = ()=>{
+    let temp = document.querySelectorAll('.table-grid-data div')
+    let result = []
+    temp.forEach(element => {
+        var json = filejsonclass.find((ev)=>{
+            return ev.STT == element.id
+        })
+        result.push(json)
+    });
+    savefile('schedule.json', JSON.stringify(result,undefined,4))
 }
