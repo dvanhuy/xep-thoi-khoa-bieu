@@ -122,7 +122,6 @@ function stopResize(e) {
 // ------------------------------------------------------------------
 
 const readjsonfile = document.getElementById('button-read')
-
 readjsonfile.onclick= function(){
     if(selectedFile){
       var reader = new FileReader();
@@ -220,7 +219,6 @@ function jsontotable(filejson){
     tabledata +='</table>'
     return tabledata
   }
-  
 }
 
 function seteventformaintable(elementtable){
@@ -383,13 +381,13 @@ function savefile(filename, datastring){
   var a = document.createElement("a");
   var file = new Blob([datastring], { type: "text/plain" });
   a.href = URL.createObjectURL(file);
+  a.target = '_blank'
   a.download = filename;
   a.click();
 }
 btclearexport.onclick = function(){
   if (selectedclass.length != 0){
     var datajsonreturn = selectedidtoobobject()
-    // savefile('class.json',JSON.stringify(datajsonreturn))
     savefile('class.json',JSON.stringify(datajsonreturn,undefined,3))
   }
 }

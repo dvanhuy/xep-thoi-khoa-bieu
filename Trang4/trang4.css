@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
 * {
   margin: 0px;
   padding: 0px;
@@ -88,11 +90,302 @@
   position: absolute;
   left: 250px;
   top: 0px;
-  background-color: whitesmoke;
   height: 100vh;
   width: calc(100% - 250px);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+}
+
+.get-file {
+  position: absolute;
+  border: 1px dashed black;
+  height: 400px;
+  width: 400px;
+  font-size: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pacifico", cursive;
+  z-index: 0;
+}
+.get-file-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.get-file-title-hide {
+  display: none;
+}
+.get-file-title input {
+  display: none;
+}
+.get-file-title span {
+  font-size: 20px;
+  padding: 5px;
+}
+.get-file-title label {
+  padding-top: 5px;
+  font-size: 20px;
+  -webkit-text-decoration: underline blue;
+          text-decoration: underline blue;
+  color: blue;
+}
+.get-file .loading {
+  z-index: 100;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+}
+.get-file .loading-hide {
+  opacity: 0;
+}
+.get-file .loading div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transform: rotate(calc(var(--value) * 45deg));
+}
+.get-file .loading div::before {
+  content: "";
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  background-color: red;
+  z-index: 20;
+  border-radius: 50%;
+  filter: hue-rotate(calc(var(--value) * 45deg));
+  -webkit-animation-name: cirloading;
+          animation-name: cirloading;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-delay: calc(var(--value) * 0.125s);
+          animation-delay: calc(var(--value) * 0.125s);
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+.get-file .file-json {
+  position: absolute;
+}
+.get-file .file-json-hide {
+  display: none;
+}
+.get-file .file-json-icon {
+  box-sizing: border-box;
+  position: relative;
+  width: 150px;
+  height: 200px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+.get-file .file-json-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
+}
+.get-file .file-json-icon :first-child {
+  position: absolute;
+  font-size: 90px;
+  color: rgb(174, 177, 13);
+  font-family: Arial, Helvetica, sans-serif;
+  word-spacing: 10px;
+  line-height: 200px;
+  width: 150px;
+  text-align: center;
+}
+.get-file .file-json-icon :nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 39px;
+  height: 39px;
+  background-color: red;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+  margin: -19px -19px 0 0;
+  border-bottom: 1px solid black;
+  background-color: white;
+  z-index: 5;
+}
+.get-file .file-json-icon .button-delete-files {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  right: 0;
+  font-size: 25px;
+  line-height: 25px;
+  text-align: center;
+  z-index: 10;
+  margin: -20px -20px 0 0;
+  cursor: pointer;
+}
+.get-file .file-json-name {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+}
+.get-file .button-read {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  right: 0;
+  margin-right: -101px;
+  background-color: lightgreen;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.get-file .button-read::after {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 100px;
+  -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+          clip-path: polygon(0 0, 100% 50%, 0 100%);
+  right: 0;
+  margin: -20px -29px 0 0;
+  background-color: lightgreen;
+}
+.get-file .button-read:hover {
+  background-color: rgb(207, 255, 207);
+}
+.get-file .button-read:hover::after {
+  background-color: rgb(207, 255, 207);
+}
+
+@-webkit-keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
+
+@keyframes cirloading {
+  to {
+    transform: scale(0);
+  }
+}
+.hide {
+  display: none;
+}
+
+.second-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.second-container .table-data {
+  width: 90%;
+}
+.second-container .table-data table {
+  font-size: 20px;
+  width: 100%;
+  border-spacing: 0px;
+  text-align: center;
+  border: 1px solid black;
+}
+.second-container .table-data table thead {
+  font-family: "Cabin", sans-serif;
+  background-color: lightblue;
+  color: red;
+}
+.second-container .table-data table thead tr {
+  height: 100px;
+}
+.second-container .table-data table thead tr th {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.second-container .table-data table tbody {
+  font-family: "Pangolin", cursive;
+}
+.second-container .table-data table tbody tr {
+  height: 100px;
+  font-size: 18px;
+  height: 90px;
+}
+.second-container .table-data table tbody tr:hover {
+  background-color: rgb(163, 255, 163);
+}
+.second-container .table-data table tbody tr td {
+  cursor: pointer;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.hidden-menu {
+  position: fixed;
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  border-left: 1px solid black;
+  transition: 0.2s linear;
+}
+.hidden-menu .pull-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.blur-content {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: gray;
+  opacity: 0.3;
+  z-index: 5;
+  inset: 0;
+}
+
+.button-menu-hidden {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  top: 50%;
+  right: 300px;
+  transform: translate(50%, -50%);
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  transition: 0.2s linear;
+  z-index: 9;
+  background-color: white;
+}
+.button-menu-hidden i {
+  font-size: 30px;
+  margin-left: 7px;
+}
+
+.hidden-menu-hide {
+  width: 0 !important;
+  opacity: 0;
+}
+.hidden-menu-hide ~ .button-menu-hidden {
+  right: 0 !important;
+}
+.hidden-menu-hide ~ .blur-content {
+  display: none !important;
 }/*# sourceMappingURL=trang4.css.map */

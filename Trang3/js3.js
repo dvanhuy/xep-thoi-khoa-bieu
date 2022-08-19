@@ -335,10 +335,9 @@ function savefile(filename, datastring){
     var a = document.createElement("a");
     var file = new Blob([datastring], { type: "text/plain" });
     a.href = URL.createObjectURL(file);
+    // a.target = '_blank'
     a.download = filename;
-    a.click((ev)=>{
-        ev.preventDefault()
-    });
+    a.click();
   }
 document.getElementById('export-data').onclick = ()=>{
     let temp = document.querySelectorAll('.table-grid-data div')
