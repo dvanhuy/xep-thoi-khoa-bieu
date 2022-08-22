@@ -143,3 +143,20 @@ function jsontotable(filejson){
     return tabledata
   }
 }
+
+document.querySelector('.blur-content').onclick = ()=>{
+  menu.classList.add('hidden-menu-hide')
+}
+const tableheader = document.querySelector('.table-data thead tr')
+document.getElementById('title-size').onchange =()=>{
+  tableheader.style.fontSize = document.getElementById('title-size').value+'px'
+}
+document.getElementById('title-color').onchange =()=>{
+  tableheader.style.color = document.getElementById('title-color').value
+}
+document.getElementById('title-bgcolor').onchange =()=>{
+  tableheader.style.backgroundColor = document.getElementById('title-bgcolor').value
+}
+document.getElementById('title-height').onchange =()=>{
+  tableheader.style.height = document.getElementById('title-height').value+'px'
+}

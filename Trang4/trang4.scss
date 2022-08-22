@@ -216,6 +216,7 @@
                 font-size: 20px;
                 tr{
                     height: 100px;
+                    overflow-y: hidden;
                     th{
                         border: 1px solid black;
                         box-sizing: border-box;
@@ -328,6 +329,7 @@
         justify-content: center;
     }
     input{
+        position: relative;
         font-size: 1.2rem;
         font-family: 'Dancing Script', cursive;
         width: 40%;

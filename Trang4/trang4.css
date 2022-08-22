@@ -307,6 +307,7 @@
 }
 .second-container .table-data table thead tr {
   height: 100px;
+  overflow-y: hidden;
 }
 .second-container .table-data table thead tr th {
   border: 1px solid black;
@@ -420,6 +421,7 @@
   justify-content: center;
 }
 .title input {
+  position: relative;
   font-size: 1.2rem;
   font-family: "Dancing Script", cursive;
   width: 40%;
