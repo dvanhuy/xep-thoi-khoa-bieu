@@ -42,11 +42,7 @@ function stopResize(e) {
 
 let datasession = sessionStorage.getItem('data')
 if (datasession) {
-    dropFilejson.setAttribute('style','display: none;')
-    secondctn.classList.remove('hide')
-    console.log(JSON.parse(datasession));
-    tabledata.innerHTML = jsontotable(JSON.parse(datasession))
-    document.getElementsByClassName('main-content')[0].style.alignItems = 'start'
+  loadRun(JSON.parse(datasession))
 }
 
 dropFilejson.ondragover = function (evt) {
@@ -81,6 +77,7 @@ deletecurrentfile.onclick = function () {
     imgfilejson.classList.add('file-json-hide')
     selectedFile = undefined
 }
+
 readjsonfile.onclick= function(){
     console.time('ReadFile')
     if(selectedFile){
@@ -92,10 +89,7 @@ readjsonfile.onclick= function(){
       };
       setTimeout(() => {
         sessionStorage.setItem('data',JSON.stringify(allfilejson))
-        dropFilejson.setAttribute('style','display: none;')
-        secondctn.classList.remove('hide')
-        tabledata.innerHTML = jsontotable(allfilejson)
-        document.getElementsByClassName('main-content')[0].style.alignItems = 'start'
+        loadRun(allfilejson)
       }, 100);
     }
     else{
@@ -144,19 +138,26 @@ function jsontotable(filejson){
   }
 }
 
-document.querySelector('.blur-content').onclick = ()=>{
-  menu.classList.add('hidden-menu-hide')
-}
-const tableheader = document.querySelector('.table-data thead tr')
-document.getElementById('title-size').onchange =()=>{
-  tableheader.style.fontSize = document.getElementById('title-size').value+'px'
-}
-document.getElementById('title-color').onchange =()=>{
-  tableheader.style.color = document.getElementById('title-color').value
-}
-document.getElementById('title-bgcolor').onchange =()=>{
-  tableheader.style.backgroundColor = document.getElementById('title-bgcolor').value
-}
-document.getElementById('title-height').onchange =()=>{
-  tableheader.style.height = document.getElementById('title-height').value+'px'
+function loadRun(jsonFile) {
+  dropFilejson.setAttribute('style','display: none;')
+  secondctn.classList.remove('hide')
+  tabledata.innerHTML = jsontotable(jsonFile)
+  document.getElementsByClassName('main-content')[0].style.alignItems = 'start'
+
+  document.querySelector('.blur-content').onclick = ()=>{
+    menu.classList.add('hidden-menu-hide')
+  }
+  const tableheader = document.querySelector('.table-data thead tr')
+  document.getElementById('title-size').onchange =()=>{
+    tableheader.style.fontSize = document.getElementById('title-size').value+'px'
+  }
+  document.getElementById('title-color').onchange =()=>{
+    tableheader.style.color = document.getElementById('title-color').value
+  }
+  document.getElementById('title-bgcolor').onchange =()=>{
+    tableheader.style.backgroundColor = document.getElementById('title-bgcolor').value
+  }
+  document.getElementById('title-height').onchange =()=>{
+    tableheader.style.height = document.getElementById('title-height').value+'px'
+  }
 }
