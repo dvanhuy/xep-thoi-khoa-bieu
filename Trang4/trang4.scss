@@ -344,10 +344,50 @@
     font-family: 'Dancing Script', cursive;
     user-select: none;
     text-align: center;
+    display: grid;
+    grid-template-areas: "title title";
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(40px,auto);
     .body-title{
         padding: 5px;
         font-size: 2.5rem;
         color: red;
         grid-area: title;
+    }
+
+    label{
+        display: flex;
+        font-size: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    select{
+        position: relative;
+        font-size: 1.2rem;
+        font-family: 'Dancing Script', cursive;
+        width: 40%;
+        min-width: 100px;
+        box-sizing: border-box;
+        margin: auto;
+    }
+
+    .button_direction{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i{
+            color: black;
+            width: 30px;
+            height: 30px;
+            background-color: rgb(231, 231, 231);
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            transform: rotate(90deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }

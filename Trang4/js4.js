@@ -42,6 +42,7 @@ function stopResize(e) {
 
 let datasession = sessionStorage.getItem('data')
 if (datasession) {
+  allfilejson = JSON.parse(datasession)
   loadRun(JSON.parse(datasession))
 }
 
@@ -159,5 +160,88 @@ function loadRun(jsonFile) {
   }
   document.getElementById('title-height').onchange =()=>{
     tableheader.style.height = document.getElementById('title-height').value+'px'
+  }
+
+  let keyoption ='' 
+  Object.keys(allfilejson[0]).forEach(element => {
+    keyoption += '<option value="'+element+'">'+element+'</option>'
+  });
+
+  document.querySelector("select#orderby").innerHTML += keyoption
+  document.querySelector("select#orderbysup").innerHTML += keyoption
+  document.querySelector("select#copycontent").innerHTML += keyoption
+
+  seteventformaintable(tabledata.querySelector("table"))
+
+}
+let sortby
+document.querySelector("select#orderby").onchange = ()=>{
+  sortby = document.querySelector("select#orderby").value
+  
+  allfilejson = allfilejson.sort((a,b)=>{
+    return a[sortby] > b[sortby] ? 1 : a[sortby] < b[sortby] ? -1 : 0
+  })
+  sessionStorage.setItem('data',JSON.stringify(allfilejson))
+  tabledata.innerHTML = jsontotable(allfilejson)
+}
+
+document.querySelector(".button_direction i").onclick = ()=>{
+  allfilejson = allfilejson.reverse()
+  sessionStorage.setItem('data',JSON.stringify(allfilejson))
+  tabledata.innerHTML = jsontotable(allfilejson)
+}
+
+document.querySelector("select#orderbysup").onchange = ()=>{
+  let sortbysup = document.querySelector("select#orderbysup").value
+  if (sortby) {  
+    allfilejson = allfilejson.sort((a,b)=>{
+      if (a[sortby] == b[sortby]){
+        if (a[sortbysup] > b[sortbysup]) return 1
+        else if (a[sortbysup] < b[sortbysup]) return -1
+        else return 0
+      }
+    })
+  }
+  sessionStorage.setItem('data',JSON.stringify(allfilejson))
+  tabledata.innerHTML = jsontotable(allfilejson)
+}
+let columncopy
+document.querySelector("select#copycontent").onchange = ()=>{
+  columncopy=document.querySelector("select#copycontent").value
+}
+
+document.querySelector(".button_direction i").onclick = ()=>{
+  allfilejson = allfilejson.reverse()
+  sessionStorage.setItem('data',JSON.stringify(allfilejson))
+  tabledata.innerHTML = jsontotable(allfilejson)
+}
+
+function namecolumstonumber(columnname){
+  let mangcandung =  Object.keys(allfilejson[0])
+  for (let index = 0; index < mangcandung.length; index++) {
+    const element = mangcandung[index];
+    if (columnname == element){
+      return index
+    }
+  }
+}
+
+function seteventformaintable(elementtable){
+  var rows = elementtable.rows;
+  for (i = 1; i < rows.length; i++) {
+    rows[i].onclick = function(){ 
+      return function(){
+        var content
+        if (columncopy){
+          content =  this.cells[namecolumstonumber(columncopy)].innerHTML
+        }
+        else{
+          content = this.cells[0].innerHTML;
+        }
+        console.log(content);
+        navigator.clipboard.writeText(content);
+        this.style.backgroundColor="rgb(216, 131, 131)"
+      };
+    }(rows[i]);
   }
 }
