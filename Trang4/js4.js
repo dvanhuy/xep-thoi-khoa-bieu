@@ -12,6 +12,7 @@ const menu = document.getElementsByClassName('hidden-menu')[0]
 let selectedFile;
 let allfilejson;
 let widthtemp;
+let columncopy
 
 btmenu.onclick = function(){
     menu.classList.toggle('hidden-menu-hide')
@@ -170,7 +171,10 @@ function loadRun(jsonFile) {
   document.querySelector("select#orderby").innerHTML += keyoption
   document.querySelector("select#orderbysup").innerHTML += keyoption
   document.querySelector("select#copycontent").innerHTML += keyoption
-
+  if (sessionStorage.getItem("columncopy")){
+    document.querySelector("select#copycontent").value = sessionStorage.getItem("columncopy")
+    columncopy = sessionStorage.getItem("columncopy")
+  }
   seteventformaintable(tabledata.querySelector("table"))
 
 }
@@ -205,9 +209,9 @@ document.querySelector("select#orderbysup").onchange = ()=>{
   sessionStorage.setItem('data',JSON.stringify(allfilejson))
   tabledata.innerHTML = jsontotable(allfilejson)
 }
-let columncopy
 document.querySelector("select#copycontent").onchange = ()=>{
   columncopy=document.querySelector("select#copycontent").value
+  sessionStorage.setItem('columncopy',columncopy)
 }
 
 document.querySelector(".button_direction i").onclick = ()=>{
@@ -236,6 +240,7 @@ function seteventformaintable(elementtable){
           content =  this.cells[namecolumstonumber(columncopy)].innerHTML
         }
         else{
+          console.log(columncopy);
           content = this.cells[0].innerHTML;
         }
         console.log(content);
